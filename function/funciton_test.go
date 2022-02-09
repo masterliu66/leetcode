@@ -1,6 +1,9 @@
 package function
 
-import "testing"
+import (
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
 
 func TestGridIllumination(t *testing.T) {
 
@@ -16,5 +19,8 @@ func TestCountKDifference(t *testing.T) {
 	nums := []int{1, 2, 2, 1}
 	k := 1
 
-	countKDifference(nums, k)
+	ans := countKDifference(nums, k)
+
+	a := assert.New(t)
+	a.Equal(ans, 4)
 }
