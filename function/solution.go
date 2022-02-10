@@ -1,5 +1,9 @@
 package function
 
+import (
+	"strconv"
+)
+
 /* 1001. 网格照明 */
 func gridIllumination(n int, lamps [][]int, queries [][]int) []int {
 
@@ -72,4 +76,30 @@ func countKDifference(nums []int, k int) int {
 	}
 
 	return ans
+}
+
+/* 1447. 最简分数 */
+func simplifiedFractions(n int) []string {
+
+	var ans []string
+
+	for i := 1; i < n; i++ {
+		for j := i + 1; j <= n; j++ {
+			if gcd(i, j) == 1 {
+				ans = append(ans, strconv.Itoa(i)+"/"+strconv.Itoa(j))
+			}
+		}
+	}
+
+	return ans
+}
+
+/* 求两个数的最大公约数 */
+func gcd(a, b int) int {
+
+	for b != 0 {
+		a, b = b, a%b
+	}
+
+	return a
 }

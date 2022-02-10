@@ -22,5 +22,15 @@ func TestCountKDifference(t *testing.T) {
 	ans := countKDifference(nums, k)
 
 	a := assert.New(t)
-	a.Equal(ans, 4)
+	a.Equal(4, ans)
+}
+
+func TestSimplifiedFractions(t *testing.T) {
+
+	n := 4
+
+	ans := simplifiedFractions(n)
+
+	a := assert.New(t)
+	a.Equal([]string{"1/2", "1/3", "1/4", "2/3", "3/4"}, ans)
 }
