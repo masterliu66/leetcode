@@ -34,3 +34,15 @@ func TestSimplifiedFractions(t *testing.T) {
 	a := assert.New(t)
 	a.Equal([]string{"1/2", "1/3", "1/4", "2/3", "3/4"}, ans)
 }
+
+func TestMinimumDifference(t *testing.T) {
+
+	nums := []int{9, 4, 1, 7}
+
+	k := 3
+
+	ans := minimumDifference(nums, k)
+
+	a := assert.New(t)
+	a.Equal(5, ans)
+}

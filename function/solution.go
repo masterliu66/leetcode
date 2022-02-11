@@ -1,6 +1,8 @@
 package function
 
 import (
+	"math"
+	"sort"
 	"strconv"
 )
 
@@ -92,6 +94,30 @@ func simplifiedFractions(n int) []string {
 	}
 
 	return ans
+}
+
+/* 1984. 学生分数的最小差值 */
+func minimumDifference(nums []int, k int) int {
+
+	if k == 1 {
+		return 0
+	}
+
+	sort.Ints(nums)
+
+	min := math.MaxInt32
+	for i, num := range nums[:len(nums)-k+1] {
+		min = Min(min, nums[i+k-1]-num)
+	}
+
+	return min
+}
+
+func Min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
 
 /* 求两个数的最大公约数 */
