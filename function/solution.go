@@ -113,6 +113,55 @@ func minimumDifference(nums []int, k int) int {
 	return min
 }
 
+/* 1020. 飞地的数量 */
+func numEnclaves(grid [][]int) int {
+
+	type coordinate struct{ x, y int }
+
+	// 上下左右四个方向
+	directions := []coordinate{{0, -1}, {0, 1}, {-1, 0}, {1, 0}}
+
+	m, n := len(grid), len(grid[0])
+
+	// 记录已经访问过的坐标
+	vis := map[coordinate]bool{}
+
+	var dfs func(int, int)
+	dfs = func(x, y int) {
+		current := coordinate{x, y}
+		if x < 0 || y < 0 || x >= n || y >= m || grid[y][x] == 0 || vis[current] {
+			return
+		}
+		vis[current] = true
+		for _, direction := range directions {
+			dfs(x+direction.x, y+direction.y)
+		}
+	}
+
+	// 从左右边界开始递归搜索
+	for i := 0; i < m; i++ {
+		dfs(0, i)
+		dfs(n-1, i)
+	}
+	// 从上下边界开始递归搜索
+	for i := 1; i < n-1; i++ {
+		dfs(i, 0)
+		dfs(i, m-1)
+	}
+
+	ans := 0
+	for y, row := range grid {
+		for x, num := range row {
+			// 统计没有访问过的陆地坐标数量
+			if num == 1 && !vis[coordinate{x, y}] {
+				ans++
+			}
+		}
+	}
+
+	return ans
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a

@@ -46,3 +46,19 @@ func TestMinimumDifference(t *testing.T) {
 	a := assert.New(t)
 	a.Equal(5, ans)
 }
+
+func TestNumEnclaves(t *testing.T) {
+
+	grid := [][]int{{0, 0, 0, 1, 1, 1, 0, 1, 0, 0},
+		{0, 1, 1, 0, 0, 0, 1, 0, 1, 0},
+		{0, 1, 1, 1, 1, 1, 0, 0, 1, 0},
+		{0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
+		{0, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+		{1, 0, 1, 0, 1, 1, 0, 0, 0, 0},
+		{0, 0, 0, 0, 1, 1, 0, 0, 0, 1}}
+
+	ans := numEnclaves(grid)
+
+	a := assert.New(t)
+	a.Equal(3, ans)
+}
