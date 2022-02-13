@@ -11,7 +11,9 @@ func TestGridIllumination(t *testing.T) {
 	lamps := [][]int{{0, 0}, {4, 4}}
 	queries := [][]int{{1, 1}, {1, 0}}
 
-	gridIllumination(n, lamps, queries)
+	ans := gridIllumination(n, lamps, queries)
+
+	assertEqual(t, []int{1, 0}, ans)
 }
 
 func TestCountKDifference(t *testing.T) {
@@ -21,8 +23,7 @@ func TestCountKDifference(t *testing.T) {
 
 	ans := countKDifference(nums, k)
 
-	a := assert.New(t)
-	a.Equal(4, ans)
+	assertEqual(t, 4, ans)
 }
 
 func TestSimplifiedFractions(t *testing.T) {
@@ -31,8 +32,7 @@ func TestSimplifiedFractions(t *testing.T) {
 
 	ans := simplifiedFractions(n)
 
-	a := assert.New(t)
-	a.Equal([]string{"1/2", "1/3", "1/4", "2/3", "3/4"}, ans)
+	assertEqual(t, []string{"1/2", "1/3", "1/4", "2/3", "3/4"}, ans)
 }
 
 func TestMinimumDifference(t *testing.T) {
@@ -43,8 +43,7 @@ func TestMinimumDifference(t *testing.T) {
 
 	ans := minimumDifference(nums, k)
 
-	a := assert.New(t)
-	a.Equal(5, ans)
+	assertEqual(t, 5, ans)
 }
 
 func TestNumEnclaves(t *testing.T) {
@@ -59,6 +58,21 @@ func TestNumEnclaves(t *testing.T) {
 
 	ans := numEnclaves(grid)
 
+	assertEqual(t, 3, ans)
+}
+
+func TestMaxNumberOfBalloons(t *testing.T) {
+
+	text := "loonbalxballpoon"
+
+	ans := maxNumberOfBalloons(text)
+
+	assertEqual(t, 2, ans)
+}
+
+func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
+
 	a := assert.New(t)
-	a.Equal(3, ans)
+
+	a.Equal(expected, actual)
 }

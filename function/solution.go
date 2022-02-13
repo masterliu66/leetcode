@@ -162,6 +162,33 @@ func numEnclaves(grid [][]int) int {
 	return ans
 }
 
+/* 1189. “气球” 的最大数量 */
+func maxNumberOfBalloons(text string) int {
+
+	balloon := map[rune]int{
+		'b': 0,
+		'a': 0,
+		'l': 0,
+		'o': 0,
+		'n': 0,
+	}
+	for _, v := range text {
+		_, ok := balloon[v]
+		if ok {
+			balloon[v]++
+		}
+	}
+
+	balloon['l'] >>= 1
+	balloon['o'] >>= 1
+	ans := math.MaxInt32
+	for _, ctn := range balloon {
+		ans = Min(ans, ctn)
+	}
+
+	return ans
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a
