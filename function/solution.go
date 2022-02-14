@@ -189,6 +189,27 @@ func maxNumberOfBalloons(text string) int {
 	return ans
 }
 
+/* 540. 有序数组中的单一元素 */
+func singleNonDuplicate(nums []int) int {
+
+	n := len(nums)
+
+	l, r := 0, n - 1
+
+	for l < r {
+		mid := (l + r) >> 1
+		// mid为偶数时与右边元素进行比较, 为奇数时与左边元素进行比较, 相同则说明单一元素在mid右侧
+		// 当 mid 是偶数时 mid + 1 = mid ^ 1, 当 mid 是奇数时 mid - 1 = mid ^ 1
+		if nums[mid] == nums[mid ^ 1] {
+			l = mid + 1
+		} else {
+			r = mid
+		}
+	}
+
+	return nums[l]
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a

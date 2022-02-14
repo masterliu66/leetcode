@@ -70,6 +70,15 @@ func TestMaxNumberOfBalloons(t *testing.T) {
 	assertEqual(t, 2, ans)
 }
 
+func TestSingleNonDuplicate(t *testing.T)  {
+
+	nums := []int{3,3,7,7,10,11,11}
+
+	ans := singleNonDuplicate(nums)
+
+	assertEqual(t, 10, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
