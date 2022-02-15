@@ -210,11 +210,46 @@ func singleNonDuplicate(nums []int) int {
 	return nums[l]
 }
 
+/* 1380. 矩阵中的幸运数 */
+func luckyNumbers (matrix [][]int) (ans []int) {
+
+	m, n := len(matrix), len(matrix[0])
+
+	minColOfRow := make([]int, m)
+	maxOfCol := make([]int, n)
+
+	for i := 0; i < m; i++ {
+		min := math.MaxInt32
+		for j := 0; j < n; j++ {
+			if matrix[i][j] < min {
+				min = matrix[i][j]
+				minColOfRow[i] = j
+			}
+			maxOfCol[j] = Max(maxOfCol[j], matrix[i][j])
+		}
+	}
+
+	for row, col := range minColOfRow {
+		if maxOfCol[col] == matrix[row][col] {
+			ans = append(ans, matrix[row][col])
+		}
+	}
+
+	return ans
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a
 	}
 	return b
+}
+
+func Max(a, b int) int {
+	if a < b {
+		return b
+	}
+	return a
 }
 
 /* 求两个数的最大公约数 */

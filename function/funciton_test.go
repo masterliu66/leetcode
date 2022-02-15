@@ -79,6 +79,15 @@ func TestSingleNonDuplicate(t *testing.T)  {
 	assertEqual(t, 10, ans)
 }
 
+func TestLuckyNumbers(t *testing.T) {
+
+	matrix := [][]int{{1,10,4,2},{9,3,8,7},{15,16,17,12}}
+
+	ans := luckyNumbers(matrix)
+
+	assertEqual(t, []int{12}, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
