@@ -90,7 +90,7 @@ func TestLuckyNumbers(t *testing.T) {
 
 func TestKnightProbability(t *testing.T) {
 
-	n, k, row, column := 8, 30, 6, 4
+	n, k, row, column := 3, 2, 0, 0
 
 	ans := knightProbability(n, k, row, column)
 
