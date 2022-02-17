@@ -238,6 +238,35 @@ func luckyNumbers (matrix [][]int) (ans []int) {
 	return ans
 }
 
+/* 688. 骑士在棋盘上的概率 */
+func knightProbability(n int, k int, row int, column int) float64 {
+
+	// 8个可以移动的方向
+	direction := []struct{x, y int}{{-2, -1}, {-1, -2}, {1, -2}, {2, -1}, {-2, 1}, {-1, 2}, {1, 2}, {2, 1}}
+
+	// dp[k][i][j] 表示骑士从(i, j)出发, 移动k次后依旧处于棋盘上的概率
+	dp := make([][][]float64, k + 1)
+	for step := range dp {
+		dp[step] = make([][]float64, n)
+		for i := 0; i < n; i++ {
+			dp[step][i] = make([]float64, n)
+			for j := 0; j < n; j++ {
+				if step == 0 {
+					dp[step][i][j] = 1
+				} else {
+					for _, d := range direction {
+						if x, y := i + d.x, j + d.y; x >= 0 && x < n && y >= 0 && y < n {
+							dp[step][i][j] += dp[step-1][x][y] / 8
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return dp[k][row][column]
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a

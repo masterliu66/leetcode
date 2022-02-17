@@ -88,6 +88,15 @@ func TestLuckyNumbers(t *testing.T) {
 	assertEqual(t, []int{12}, ans)
 }
 
+func TestKnightProbability(t *testing.T) {
+
+	n, k, row, column := 8, 30, 6, 4
+
+	ans := knightProbability(n, k, row, column)
+
+	assertEqual(t, 0.0625, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
