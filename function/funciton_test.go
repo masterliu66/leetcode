@@ -97,6 +97,15 @@ func TestKnightProbability(t *testing.T) {
 	assertEqual(t, 0.0625, ans)
 }
 
+func TestFindCenter(t *testing.T) {
+
+	edges := [][]int{{1,2},{5,1},{1,3},{1,4}}
+
+	ans := findCenter(edges)
+
+	assertEqual(t, 1, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)

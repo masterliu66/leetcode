@@ -267,6 +267,24 @@ func knightProbability(n int, k int, row int, column int) float64 {
 	return dp[k][row][column]
 }
 
+func findCenter(edges [][]int) int {
+
+	nodes := map[int]int{}
+	for _, edge := range edges {
+		nodes[edge[0]]++
+		nodes[edge[1]]++
+	}
+
+	n := len(nodes)
+	for node, ctn := range nodes {
+		if ctn == n - 1 {
+			return node
+		}
+	}
+
+	panic("没有中心节点")
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a
