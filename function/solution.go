@@ -267,6 +267,7 @@ func knightProbability(n int, k int, row int, column int) float64 {
 	return dp[k][row][column]
 }
 
+/* #1791 找出星型图的中心节点 */
 func findCenter(edges [][]int) int {
 
 	nodes := map[int]int{}
@@ -283,6 +284,40 @@ func findCenter(edges [][]int) int {
 	}
 
 	panic("没有中心节点")
+}
+
+/* 969. 煎饼排序 */
+func pancakeSort(arr []int) []int {
+
+	var flip func(int)
+	flip = func(k int) {
+		for low, high := 0, k; low < high; low, high = low + 1, high - 1 {
+			arr[low], arr[high] = arr[high], arr[low]
+		}
+	}
+
+	var ans []int
+	for n := len(arr); n > 1; n-- {
+		maxNumIndex := 0
+		for i, num := range arr[:n] {
+			if num > arr[maxNumIndex] {
+				maxNumIndex = i
+			}
+		}
+		if maxNumIndex == n - 1  {
+			continue
+		}
+		if maxNumIndex != 0 {
+			// 将最大数移至首位
+			flip(maxNumIndex)
+			ans = append(ans, maxNumIndex + 1)
+		}
+		// 翻转前right个数
+		flip(n - 1)
+		ans = append(ans, n)
+	}
+
+	return ans
 }
 
 func Min(a, b int) int {
