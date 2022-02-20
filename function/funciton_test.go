@@ -116,6 +116,15 @@ func TestPancakeSort(t *testing.T) {
 	assertLessOrEqual(t, len(ans), len(arr) * 10)
 }
 
+func TestIsOneBitCharacter(t *testing.T) {
+
+	bits := []int{1, 1, 1, 0}
+
+	ans := isOneBitCharacter(bits)
+
+	assertEqual(t, false, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)

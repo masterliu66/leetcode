@@ -320,6 +320,17 @@ func pancakeSort(arr []int) []int {
 	return ans
 }
 
+/* 717. 1比特与2比特字符 */
+func isOneBitCharacter(bits []int) bool {
+
+	n, i := len(bits), len(bits) - 2
+	for i >= 0 && bits[i] == 1 {
+		i--
+	}
+
+	return (n - i) % 2 == 0
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a
