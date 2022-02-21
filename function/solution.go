@@ -331,6 +331,48 @@ func isOneBitCharacter(bits []int) bool {
 	return (n - i) % 2 == 0
 }
 
+/* 838. 推多米诺 */
+func pushDominoes(dominoes string) string {
+
+	n := len(dominoes)
+
+	// dp[i,j]表示第i秒时第j张多米诺骨牌的状态
+	dp := make([][]rune, 2)
+	dp[0] = make([]rune, n)
+	dp[1] = make([]rune, n)
+	for i, domino := range dominoes {
+		dp[0][i] = domino
+	}
+
+	complete := func(runes []rune) bool {
+		needRun := false
+		for i, r := range runes {
+			if r == 'L' || r == 'R' {
+				needRun = true
+				continue
+			}
+			if needRun && r == '.' && runes[i - 1] == '.' {
+				return false
+			}
+		}
+		return true
+	}
+
+	flag := 0
+	for {
+		//next := flag ^ 1
+		//for i, r := range dp[next] {
+		//
+		//}
+		flag ^= 1
+		if complete(dp[flag]) {
+			break
+		}
+	}
+
+	return string(dp[flag])
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a
