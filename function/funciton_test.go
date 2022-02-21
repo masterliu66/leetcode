@@ -125,6 +125,15 @@ func TestIsOneBitCharacter(t *testing.T) {
 	assertEqual(t, false, ans)
 }
 
+func TestPushDominoes(t *testing.T) {
+
+	dominoes := ".L.R...LR..L.."
+
+	ans := pushDominoes(dominoes)
+
+	assertEqual(t, "LL.RR.LLRRLL..", ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)

@@ -334,43 +334,51 @@ func isOneBitCharacter(bits []int) bool {
 /* 838. 推多米诺 */
 func pushDominoes(dominoes string) string {
 
-	n := len(dominoes)
-
-	// dp[i,j]表示第i秒时第j张多米诺骨牌的状态
-	dp := make([][]rune, 2)
-	dp[0] = make([]rune, n)
-	dp[1] = make([]rune, n)
-	for i, domino := range dominoes {
-		dp[0][i] = domino
-	}
-
-	complete := func(runes []rune) bool {
-		needRun := false
-		for i, r := range runes {
-			if r == 'L' || r == 'R' {
-				needRun = true
-				continue
+	ans := []byte(dominoes)
+	i, n, left := 0, len(dominoes), byte('L')
+	for i < n {
+		j, right := i, byte('R')
+		// 找到一段连续的没有被推动的骨牌
+		for j < n && ans[j] == '.' {
+			j++
+		}
+		if j < n {
+			right = ans[j]
+		}
+		// 方向相同
+		if left == right {
+			for ; i < j; i++ {
+				ans[i] = right
 			}
-			if needRun && r == '.' && runes[i - 1] == '.' {
-				return false
+		// 方向相反
+		} else if left == 'R' && right == 'L' {
+			for k := j - 1; i < k; k-- {
+				ans[i] = 'R'
+				ans[k] = 'L'
+				i++
 			}
 		}
-		return true
+		// 记录左边多米诺骨牌的方向
+		left = right
+		i = j + 1
 	}
 
-	flag := 0
-	for {
-		//next := flag ^ 1
-		//for i, r := range dp[next] {
-		//
-		//}
-		flag ^= 1
-		if complete(dp[flag]) {
-			break
+	return string(ans)
+}
+
+func Equal(a, b []int) bool {
+
+	if len(a) != len(b) {
+		return false
+	}
+
+	for i, v := range a {
+		if b[i] != v {
+			return false
 		}
 	}
 
-	return string(dp[flag])
+	return true
 }
 
 func Min(a, b int) int {
