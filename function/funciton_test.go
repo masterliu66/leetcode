@@ -134,6 +134,15 @@ func TestPushDominoes(t *testing.T) {
 	assertEqual(t, "LL.RR.LLRRLL..", ans)
 }
 
+func TestNumberOfGoodSubsets(t *testing.T) {
+
+	nums := []int{4,2,3,15}
+
+	ans := numberOfGoodSubsets(nums)
+
+	assertEqual(t, 5, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)

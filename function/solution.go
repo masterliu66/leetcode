@@ -366,6 +366,52 @@ func pushDominoes(dominoes string) string {
 	return string(ans)
 }
 
+/* 1994. 好子集的数目 */
+func numberOfGoodSubsets(nums []int) int {
+
+	const mod int = 1e9 + 7
+
+	var ctn [30]int
+	for _, num := range nums {
+		ctn[num - 1]++
+	}
+
+	primes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29}
+	masks := map[int]int {
+		// 质数
+		2: 0x01, 3: 0x02, 5: 0x04, 7: 0x08, 11: 0x10, 13: 0x20, 17: 0x40, 19: 0x80, 23: 0x100, 29: 0x200,
+		// 可以分解为不同质因数的合数
+		6: 0x03, 10: 0x05, 14: 0x09, 15: 0x06, 21: 0x0a, 22: 0x11, 26: 0x21, 30: 0x07,
+	}
+
+	// dp[i][mask] 表示只取<=i的数, 在状态mask下的方案数
+	dp := make([]int, 1 << len(primes))
+	dp[0] = 1
+	// 所有数字1都可以取或者不取
+	for i := 0; i < ctn[0]; i++ {
+		dp[0] = dp[0] * 2 % mod
+	}
+
+	for i := 2; i <= 30; i++ {
+		if ctn[i - 1] == 0 || masks[i] == 0 {
+			continue
+		}
+		for mask := 1 << len(primes); mask > 0; mask-- {
+			// masks[i]为当前状态的子集
+			if mask & masks[i] == masks[i] {
+				dp[mask] = (dp[mask] + dp[mask ^ (masks[i])] * ctn[i - 1]) % mod
+			}
+		}
+	}
+
+	ans := 0
+	for _, v := range dp[1:] {
+		ans = (ans + v) % mod
+	}
+
+	return ans
+}
+
 func Equal(a, b []int) bool {
 
 	if len(a) != len(b) {
