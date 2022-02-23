@@ -143,6 +143,15 @@ func TestNumberOfGoodSubsets(t *testing.T) {
 	assertEqual(t, 5, ans)
 }
 
+func TestReverseOnlyLetters(t *testing.T) {
+
+	s := "Test1ng-Leet=code-Q!"
+
+	ans := reverseOnlyLetters(s)
+
+	assertEqual(t, "Qedo1ct-eeLg=ntse-T!", ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)

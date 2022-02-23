@@ -4,6 +4,7 @@ import (
 	"math"
 	"sort"
 	"strconv"
+	"unicode"
 )
 
 /* 1001. 网格照明 */
@@ -410,6 +411,30 @@ func numberOfGoodSubsets(nums []int) int {
 	}
 
 	return ans
+}
+
+/* 917. 仅仅反转字母 */
+func reverseOnlyLetters(s string) string {
+
+	n := len(s)
+
+	runes := []rune(s)
+
+	for l, r := 0, n - 1; l < r; {
+		if !unicode.IsLetter(runes[l]) {
+			l++
+			continue
+		}
+		if !unicode.IsLetter(runes[r]) {
+			r--
+			continue
+		}
+		runes[l], runes[r] = runes[r], runes[l]
+		l++
+		r--
+	}
+
+	return string(runes)
 }
 
 func Equal(a, b []int) bool {
