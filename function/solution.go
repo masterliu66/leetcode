@@ -450,15 +450,12 @@ func findBall(grid [][]int) []int {
 		}
 
 		direction := grid[row][col]
-		if direction == 1 && (col == n - 1 || grid[row][col + 1] == -1) {
+		col += direction
+		if col < 0 || col == n || grid[row][col] != direction {
 			return -1
 		}
 
-		if direction == -1 && (col == 0 || grid[row][col - 1] == 1) {
-			return -1
-		}
-
-		return dfs(row + 1, col + direction)
+		return dfs(row + 1, col)
 	}
 
 	ans := make([]int, n)
