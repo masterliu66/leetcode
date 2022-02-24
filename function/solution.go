@@ -437,6 +437,38 @@ func reverseOnlyLetters(s string) string {
 	return string(runes)
 }
 
+/* 1706. 球会落何处 */
+func findBall(grid [][]int) []int {
+
+	m, n := len(grid), len(grid[0])
+
+	var dfs func(int, int) int
+	dfs = func(row, col int) int {
+
+		if row == m {
+			return col
+		}
+
+		direction := grid[row][col]
+		if direction == 1 && (col == n - 1 || grid[row][col + 1] == -1) {
+			return -1
+		}
+
+		if direction == -1 && (col == 0 || grid[row][col - 1] == 1) {
+			return -1
+		}
+
+		return dfs(row + 1, col + direction)
+	}
+
+	ans := make([]int, n)
+	for i := 0; i < n; i++ {
+		ans[i] = dfs(0, i)
+	}
+
+	return ans
+}
+
 func Equal(a, b []int) bool {
 
 	if len(a) != len(b) {

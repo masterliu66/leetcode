@@ -152,6 +152,18 @@ func TestReverseOnlyLetters(t *testing.T) {
 	assertEqual(t, "Qedo1ct-eeLg=ntse-T!", ans)
 }
 
+func TestFindBall(t *testing.T) {
+
+	grid := [][]int{{ 1,  1,  1,  1,  1,  1},
+					{-1, -1, -1, -1, -1, -1},
+					{ 1,  1,  1,  1,  1,  1},
+					{-1, -1, -1, -1, -1, -1}}
+
+	ans := findBall(grid)
+
+	assertEqual(t, []int{0, 1, 2, 3, 4, -1}, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
