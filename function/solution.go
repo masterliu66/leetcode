@@ -1,6 +1,7 @@
 package function
 
 import (
+	"fmt"
 	"math"
 	"sort"
 	"strconv"
@@ -464,6 +465,17 @@ func findBall(grid [][]int) []int {
 	}
 
 	return ans
+}
+
+/* 537. 复数乘法 */
+func complexNumberMultiply(num1 string, num2 string) string {
+
+	num1Complex, _ := strconv.ParseComplex(num1, 128)
+	num2Complex, _ := strconv.ParseComplex(num2, 128)
+
+	ansComplex := num1Complex * num2Complex
+
+	return fmt.Sprintf("%d+%di", int (real(ansComplex)), int (imag(ansComplex)))
 }
 
 func Equal(a, b []int) bool {

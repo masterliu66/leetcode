@@ -164,6 +164,15 @@ func TestFindBall(t *testing.T) {
 	assertEqual(t, []int{0, 1, 2, 3, 4, -1}, ans)
 }
 
+func TestComplexNumberMultiply(t *testing.T) {
+
+	num1, num2 := "1+-1i", "1+-1i"
+
+	ans := complexNumberMultiply(num1, num2)
+
+	assertEqual(t, "0+-2i", ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
