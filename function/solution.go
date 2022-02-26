@@ -493,6 +493,25 @@ func Equal(a, b []int) bool {
 	return true
 }
 
+/* 2016. 增量元素之间的最大差值 */
+func maximumDifference(nums []int) int {
+
+	// 记录最小值
+	min := nums[0]
+
+	// 记录最大差值
+	maxDiff := -1
+	for _, num := range nums[1:] {
+		if num > min {
+			maxDiff = Max(maxDiff, num - min)
+		} else {
+			min = num
+		}
+	}
+
+	return maxDiff
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a

@@ -173,6 +173,15 @@ func TestComplexNumberMultiply(t *testing.T) {
 	assertEqual(t, "0+-2i", ans)
 }
 
+func TestMaximumDifference(t *testing.T) {
+
+	nums := []int{7,1,5,4}
+
+	ans := maximumDifference(nums)
+
+	assertEqual(t, 4, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
