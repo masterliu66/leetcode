@@ -5,6 +5,7 @@ import (
 	"math"
 	"sort"
 	"strconv"
+	"strings"
 	"unicode"
 )
 
@@ -510,6 +511,31 @@ func maximumDifference(nums []int) int {
 	}
 
 	return maxDiff
+}
+
+/* 553. 最优除法 */
+func optimalDivision(nums []int) string {
+
+	n := len(nums)
+	if n == 1 {
+		return strconv.Itoa(nums[0])
+	}
+
+	if n == 2 {
+		return fmt.Sprintf("%d/%d", nums[0], nums[1])
+	}
+
+	var builder strings.Builder
+	builder.WriteString(strconv.Itoa(nums[0]))
+	builder.WriteString("/(")
+	builder.WriteString(strconv.Itoa(nums[1]))
+	for _, num := range nums[2:] {
+		builder.WriteString("/")
+		builder.WriteString(strconv.Itoa(num))
+	}
+	builder.WriteString(")")
+
+	return builder.String()
 }
 
 func Min(a, b int) int {

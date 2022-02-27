@@ -182,6 +182,15 @@ func TestMaximumDifference(t *testing.T) {
 	assertEqual(t, 4, ans)
 }
 
+func TestOptimalDivision(t *testing.T) {
+
+	nums := []int{1000,100,10,2}
+
+	ans := optimalDivision(nums)
+
+	assertEqual(t, "1000/(100/10/2)", ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
