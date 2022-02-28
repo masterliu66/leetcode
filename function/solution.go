@@ -3,6 +3,7 @@ package function
 import (
 	"fmt"
 	"math"
+	"math/bits"
 	"sort"
 	"strconv"
 	"strings"
@@ -536,6 +537,34 @@ func optimalDivision(nums []int) string {
 	builder.WriteString(")")
 
 	return builder.String()
+}
+
+/* 1601. 最多可达成的换楼请求数目 */
+func maximumRequests(n int, requests [][]int) (ans int) {
+
+	m := len(requests)
+
+	outer: for mask := 1; mask < 1 << m; mask++ {
+		onesCount := bits.OnesCount(uint(mask))
+		if onesCount <= ans {
+			continue
+		}
+		ctn := make([]int, n)
+		for i, request := range requests {
+			if (mask >> i) & 1 == 1 {
+				ctn[request[0]]--
+				ctn[request[1]]++
+			}
+		}
+		for _, v := range ctn {
+			if v != 0 {
+				continue outer
+			}
+		}
+		ans = onesCount
+	}
+
+	return
 }
 
 func Min(a, b int) int {

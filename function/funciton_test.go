@@ -191,6 +191,16 @@ func TestOptimalDivision(t *testing.T) {
 	assertEqual(t, "1000/(100/10/2)", ans)
 }
 
+func TestMaximumRequests(t *testing.T) {
+
+	n := 5
+	requests := [][]int{{0,1},{1,0},{0,1},{1,2},{2,0},{3,4}}
+
+	ans := maximumRequests(n, requests)
+
+	assertEqual(t, 5, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
