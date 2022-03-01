@@ -567,6 +567,34 @@ func maximumRequests(n int, requests [][]int) (ans int) {
 	return
 }
 
+/* 6. Z 字形变换 */
+func convert(s string, numRows int) string {
+
+	n := len(s)
+	if numRows == 1 || numRows >= n {
+		return s
+	}
+	t := numRows*2 - 2
+	ans := make([]byte, 0, n)
+	// 枚举矩阵的行
+	for i := 0; i < numRows; i++ {
+		// 枚举每个周期的起始下标
+		for j := 0; j+i < n; j += t {
+			// 当前周期的第一个字符
+			ans = append(ans, s[j+i])
+			// 首行和末行只有一个字符
+			if i == 0 || i == numRows-1 {
+				continue
+			}
+			if j+t-i < n {
+				// 当前周期的第二个字符
+				ans = append(ans, s[j+t-i])
+			}
+		}
+	}
+	return string(ans)
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a

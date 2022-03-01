@@ -201,6 +201,16 @@ func TestMaximumRequests(t *testing.T) {
 	assertEqual(t, 5, ans)
 }
 
+func TestConvert(t *testing.T) {
+
+	s := "PAYPALISHIRING"
+	numRows := 3
+
+	ans := convert(s, numRows)
+
+	assertEqual(t, "PAHNAPLSIIGYIR", ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
