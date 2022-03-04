@@ -595,6 +595,71 @@ func convert(s string, numRows int) string {
 	return string(ans)
 }
 
+/* 2104. 子数组范围和 */
+func subArrayRanges(nums []int) int64 {
+
+	type Tuple struct {minLeft, maxLeft, minRight, maxRight int}
+
+	n := len(nums)
+
+	f := make([]Tuple, n)
+	var minStack, maxStack Stack
+	for i, num := range nums {
+		for !minStack.isEmpty() && nums[minStack.peek()] > num {
+			minStack.pop()
+		}
+		if minStack.isEmpty() {
+			f[i].minLeft = -1
+		} else {
+			f[i].minLeft = minStack.peek()
+		}
+		minStack.push(i)
+		// nums[maxStack.peek()] == nums[i]时maxStack.peek() < i
+		for !maxStack.isEmpty() && nums[maxStack.peek()] <= num {
+			maxStack.pop()
+		}
+		if maxStack.isEmpty() {
+			f[i].maxLeft = -1
+		} else {
+			f[i].maxLeft = maxStack.peek()
+		}
+		maxStack.push(i)
+	}
+
+	minStack.clear()
+	maxStack.clear()
+	for i := n - 1; i >= 0; i-- {
+		num := nums[i]
+		// nums[minStack.peek()] == nums[i]时minStack.peek() > i
+		for !minStack.isEmpty() && nums[minStack.peek()] >= num {
+			minStack.pop()
+		}
+		if minStack.isEmpty() {
+			f[i].minRight = n
+		} else {
+			f[i].minRight = minStack.peek()
+		}
+		minStack.push(i)
+		for !maxStack.isEmpty() && nums[maxStack.peek()] < num {
+			maxStack.pop()
+		}
+		if maxStack.isEmpty() {
+			f[i].maxRight = n
+		} else {
+			f[i].maxRight = maxStack.peek()
+		}
+		maxStack.push(i)
+	}
+
+	var sumMax, sumMin int64
+	for i, num := range nums {
+		sumMax += int64(f[i].maxRight - i) * int64(i - f[i].maxLeft) * int64(num)
+		sumMin += int64(f[i].minRight - i) * int64(i - f[i].minLeft) * int64(num)
+	}
+
+	return sumMax - sumMin
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a

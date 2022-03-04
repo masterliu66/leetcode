@@ -211,6 +211,15 @@ func TestConvert(t *testing.T) {
 	assertEqual(t, "PAHNAPLSIIGYIR", ans)
 }
 
+func TestSubArrayRanges(t *testing.T) {
+
+	nums := []int{4, -2, -3, 4, 1}
+
+	ans := subArrayRanges(nums)
+
+	assertEqual(t, int64(59), ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
