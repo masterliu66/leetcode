@@ -660,6 +660,16 @@ func subArrayRanges(nums []int) int64 {
 	return sumMax - sumMin
 }
 
+/* 521. 最长特殊序列 Ⅰ */
+func findLUSlength(a string, b string) int {
+
+	if a == b {
+		return -1
+	}
+
+	return Max(len(a), len(b))
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a

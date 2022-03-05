@@ -220,6 +220,15 @@ func TestSubArrayRanges(t *testing.T) {
 	assertEqual(t, int64(59), ans)
 }
 
+func TestFindLUSlength(t *testing.T) {
+
+	a, b := "aba", "cdc"
+
+	ans := findLUSlength(a, b)
+
+	assertEqual(t, 3, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
