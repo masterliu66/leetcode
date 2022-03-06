@@ -229,6 +229,16 @@ func TestFindLUSlength(t *testing.T) {
 	assertEqual(t, 3, ans)
 }
 
+func TestGoodDaysToRobBank(t *testing.T) {
+
+	security := []int{5,3,3,3,5,6,2}
+	time := 2
+
+	ans := goodDaysToRobBank(security, time)
+
+	assertEqual(t, []int{2,3}, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)

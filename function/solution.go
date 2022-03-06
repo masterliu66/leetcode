@@ -670,6 +670,33 @@ func findLUSlength(a string, b string) int {
 	return Max(len(a), len(b))
 }
 
+/* 2100. 适合打劫银行的日子 */
+func goodDaysToRobBank(security []int, time int) []int {
+
+	n := len(security)
+	// f[i]表示第i天前连续非递增的最大天数
+	f := make([]int, n)
+	// g[i]表示第i天后连续非递减的最大天数
+	g := make([]int, n)
+	for i := 1;  i < n; i++ {
+		if security[i] <= security[i - 1] {
+			f[i] = f[i - 1] + 1
+		}
+		if security[n-i-1] <= security[n-i] {
+			g[n-i-1] = g[n-i] + 1
+		}
+	}
+
+	var ans []int
+	for i := time; i < n-time; i++ {
+		if f[i] >= time && g[i] >= time {
+			ans = append(ans, i)
+		}
+	}
+
+	return ans
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a
