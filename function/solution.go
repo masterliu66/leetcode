@@ -700,7 +700,7 @@ func goodDaysToRobBank(security []int, time int) []int {
 /* 504. 七进制数 */
 func convertToBase7(num int) string {
 
-	var digits []int
+	var digits []rune
 	flag := false
 	if num < 0 {
 		num = -num
@@ -708,22 +708,21 @@ func convertToBase7(num int) string {
 	}
 
 	for num >= 7 {
-		digits = append(digits, num % 7)
+		digits = append(digits, '0' + rune(num % 7))
 		num /= 7
 	}
 
-	digits = append(digits, num)
+	digits = append(digits, '0' + rune(num))
 
-	builder := strings.Builder{}
 	if flag {
-		builder.WriteString("-")
+		digits = append(digits, '-')
 	}
 
-	for i := range digits {
-		builder.WriteString(strconv.Itoa(digits[len(digits)-i-1]))
+	for i, n := 0, len(digits); i < n/2; i++ {
+		digits[i], digits[n-1-i] = digits[n-1-i], digits[i]
 	}
 
-	return builder.String()
+	return string(digits)
 }
 
 func Min(a, b int) int {
