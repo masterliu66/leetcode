@@ -239,6 +239,15 @@ func TestGoodDaysToRobBank(t *testing.T) {
 	assertEqual(t, []int{2,3}, ans)
 }
 
+func TestConvertToBase7(t *testing.T) {
+
+	num := -100
+
+	ans := convertToBase7(num)
+
+	assertEqual(t, "-202", ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)
