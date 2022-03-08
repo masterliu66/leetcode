@@ -248,6 +248,17 @@ func TestConvertToBase7(t *testing.T) {
 	assertEqual(t, "-202", ans)
 }
 
+func TestPlatesBetweenCandles(t *testing.T) {
+
+	s := "***|**|*****|**||**|*"
+
+	queries := [][]int{{1,17},{4,5},{14,17},{5,11},{15,16}}
+
+	ans := platesBetweenCandles(s, queries)
+
+	assertEqual(t, []int{9,0,0,0,0}, ans)
+}
+
 func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
 
 	a := assert.New(t)

@@ -725,6 +725,51 @@ func convertToBase7(num int) string {
 	return string(digits)
 }
 
+/* 2055. 蜡烛之间的盘子 */
+func platesBetweenCandles(s string, queries [][]int) []int {
+
+	n := len(s)
+
+	plateCtn := make([]int, n + 1)
+	candleCtn := make([]int, n + 1)
+	// k,v表示蜡烛数量为k时的最小下标v
+	candleMinIndex := map[int]int{}
+	candleMaxIndex := map[int]int{}
+	for i, v := range s {
+		if v == '*' {
+			plateCtn[i+1] = plateCtn[i] + 1
+			candleCtn[i+1] = candleCtn[i]
+			candleMaxIndex[candleCtn[i]] = i
+		} else {
+			plateCtn[i+1] = plateCtn[i]
+			candleCtn[i+1] = candleCtn[i] + 1
+			candleMinIndex[candleCtn[i+1]] = i
+		}
+	}
+
+	ans := make([]int, len(queries))
+	for i, query := range queries {
+		left := query[0]
+		right := query[1]
+		// 两只蜡烛以下, 不可能有盘子处于蜡烛之间
+		if candleCtn[right+1] - candleCtn[left] <= 1 {
+			ans[i] = 0
+			continue
+		}
+		ans[i] = plateCtn[right+1] - plateCtn[left]
+		// 查找与最左边盘子数相同的最大下标
+		if s[left] == '*' && candleMaxIndex[candleCtn[left+1]] >= left {
+			ans[i] -= candleMaxIndex[candleCtn[left+1]] - left + 1
+		}
+		// 查找与最右边盘子数相同的最小下标
+		if s[right] == '*' && candleMinIndex[candleCtn[right+1]] > 0 && candleMinIndex[candleCtn[right+1]] <= right {
+			ans[i] -= right - candleMinIndex[candleCtn[right+1]]
+		}
+	}
+
+	return ans
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a
