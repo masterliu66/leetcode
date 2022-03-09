@@ -91,7 +91,7 @@ func simplifiedFractions(n int) []string {
 
 	for i := 1; i < n; i++ {
 		for j := i + 1; j <= n; j++ {
-			if gcd(i, j) == 1 {
+			if Gcd(i, j) == 1 {
 				ans = append(ans, strconv.Itoa(i)+"/"+strconv.Itoa(j))
 			}
 		}
@@ -768,28 +768,4 @@ func platesBetweenCandles(s string, queries [][]int) []int {
 	}
 
 	return ans
-}
-
-func Min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
-func Max(a, b int) int {
-	if a < b {
-		return b
-	}
-	return a
-}
-
-/* 求两个数的最大公约数 */
-func gcd(a, b int) int {
-
-	for b != 0 {
-		a, b = b, a%b
-	}
-
-	return a
 }
