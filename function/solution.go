@@ -480,21 +480,6 @@ func complexNumberMultiply(num1 string, num2 string) string {
 	return fmt.Sprintf("%d+%di", int (real(ansComplex)), int (imag(ansComplex)))
 }
 
-func Equal(a, b []int) bool {
-
-	if len(a) != len(b) {
-		return false
-	}
-
-	for i, v := range a {
-		if b[i] != v {
-			return false
-		}
-	}
-
-	return true
-}
-
 /* 2016. 增量元素之间的最大差值 */
 func maximumDifference(nums []int) int {
 
@@ -764,6 +749,36 @@ func platesBetweenCandles(s string, queries [][]int) []int {
 		// 查找与最右边盘子数相同的最小下标
 		if s[right] == '*' && candleMinIndex[candleCtn[right+1]] > 0 && candleMinIndex[candleCtn[right+1]] <= right {
 			ans[i] -= right - candleMinIndex[candleCtn[right+1]]
+		}
+	}
+
+	return ans
+}
+
+/* 798. 得分最高的最小轮调 */
+func bestRotation(nums []int) int {
+
+	n := len(nums)
+
+	// f[i]表示k=i时的得分数
+	f := make([]int, n)
+	// g[i]表示k=i时数组值等于下标的数量
+	g := make([]int, n)
+
+	for i, num := range nums {
+		g[(i+n-num) % n]++
+		if num <= i {
+			f[0]++
+		}
+	}
+
+	ans := 0
+	for i := 1; i < n; i++ {
+		// 每次移动nums[1:n)下标-1, nums[0]下标变为n-1
+		// 数组值小于下标的依旧可得分, 数组值等于下标的扣分, 数组值大于下标的依旧不得分, 下标为0的必定可加分
+		f[i] = f[i-1] - g[i-1] + 1
+		if f[i] > f[ans] {
+			ans = i
 		}
 	}
 

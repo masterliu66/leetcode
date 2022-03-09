@@ -1,7 +1,6 @@
 package function
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -259,16 +258,11 @@ func TestPlatesBetweenCandles(t *testing.T) {
 	assertEqual(t, []int{9,0,0,0,0}, ans)
 }
 
-func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
+func TestBestRotation(t *testing.T) {
 
-	a := assert.New(t)
+	nums := []int{2,3,1,4,0}
 
-	a.Equal(expected, actual)
-}
+	ans := bestRotation(nums)
 
-func assertLessOrEqual(t *testing.T, e1 interface{}, e2 interface{}) {
-
-	a := assert.New(t)
-
-	a.LessOrEqual(e1, e2)
+	assertEqual(t, 3, ans)
 }
