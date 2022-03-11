@@ -266,3 +266,14 @@ func TestBestRotation(t *testing.T) {
 
 	assertEqual(t, 3, ans)
 }
+
+func TestPreorder(t *testing.T) {
+
+	nums := []int{1, NULL, 3, 2, 4, NULL, 5, 6}
+
+	root := NewTree(nums)
+
+	ans := preorder(root)
+
+	assertEqual(t, []int{1,3,5,6,2,4}, ans)
+}
