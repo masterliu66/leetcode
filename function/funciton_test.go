@@ -277,3 +277,12 @@ func TestPreorder(t *testing.T) {
 
 	assertEqual(t, []int{1,3,5,6,2,4}, ans)
 }
+
+func TestCountHighestScoreNodes(t *testing.T) {
+
+	parents := []int{-1,2,0,2,0}
+
+	ans := countHighestScoreNodes(parents)
+
+	assertEqual(t, 3, ans)
+}

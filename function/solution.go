@@ -808,3 +808,63 @@ func preorder(root *Node) []int {
 	return ans
 }
 
+/* 2049. 统计最高分的节点数目 */
+func countHighestScoreNodes(parents []int) int {
+
+	n := len(parents)
+
+	// children[i]表示节点i的孩子节点
+	children := make([][]int, n)
+	// degree[i]表示节点i的度
+	degree := make([]int, n)
+
+	for i := 1; i < n; i++ {
+		parent := parents[i]
+		children[parent] = append(children[parent], i)
+	}
+
+	var dfs func(int) int
+	dfs = func(current int) int {
+		if len(children[current]) == 0 {
+			degree[current] = 1
+			return 1
+		}
+		if degree[current] != 0 {
+			return degree[current]
+		}
+		sum := 0
+		for _, i := range children[current] {
+			sum += dfs(i)
+		}
+		degree[current] = sum + 1
+		return degree[current]
+	}
+
+	dfs(0)
+
+	max := 0
+	ans := 0
+	for i := 0; i < n; i++ {
+		// 父节点分数 = 跟节点的度 - 当前节点的度
+		score := degree[0] - degree[i]
+		if len(children[i]) > 0 {
+			// 子节点分数 = 子节点的度
+			for _, j := range children[i] {
+				if score == 0 {
+					score = degree[j]
+				} else {
+					score *= degree[j]
+				}
+			}
+		}
+		// 找出最大分数
+		if score == max {
+			ans++
+		} else if score > max {
+			max = score
+			ans = 1
+		}
+	}
+
+	return ans
+}
