@@ -286,3 +286,15 @@ func TestCountHighestScoreNodes(t *testing.T) {
 
 	assertEqual(t, 3, ans)
 }
+
+
+func TestPostorder(t *testing.T) {
+
+	nums := []int{1, NULL, 3, 2, 4, NULL, 5, 6}
+
+	root := NewTree(nums)
+
+	ans := postorder(root)
+
+	assertEqual(t, []int{5,6,3,2,4,1}, ans)
+}

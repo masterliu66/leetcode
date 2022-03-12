@@ -25,7 +25,7 @@ func NewTree(nums []int) *Node {
 	queue.offer(root)
 	var node *Node
 	for _, num := range nums[1:] {
-		if num == -1 {
+		if num == NULL {
 			node = queue.poll().(*Node)
 		} else {
 			if node.Children == nil {
