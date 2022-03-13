@@ -298,3 +298,12 @@ func TestPostorder(t *testing.T) {
 
 	assertEqual(t, []int{5,6,3,2,4,1}, ans)
 }
+
+func TestValidUtf8(t *testing.T) {
+
+	data := []int{235,140,4}
+
+	ans := validUtf8(data)
+
+	assertEqual(t, false, ans)
+}

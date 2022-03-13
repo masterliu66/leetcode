@@ -891,3 +891,35 @@ func postorder(root *Node) []int {
 
 	return ans
 }
+
+/* 393. UTF-8 编码验证 */
+func validUtf8(data []int) bool {
+
+	n := len(data)
+	for i := 0; i < n; i++ {
+		// n 字节 的字符
+		if (data[i] >> 7) & 1 == 1 {
+			ctn := 0
+			for bit := 6; bit >= 0; bit-- {
+				if (data[i] >> bit) & 1 == 0 {
+					break
+				}
+				ctn++
+			}
+			// 字节数为1或字节数超过4个或剩余字节数不足
+			if ctn == 0 || ctn > 3 || i + ctn >= n {
+				return false
+			}
+			for j := 0; j < ctn; j++ {
+				i++
+				// 不是10开头
+				if (data[i] >> 7) & 1 == 0 || (data[i] >> 6) & 1 == 1 {
+					return false
+				}
+			}
+		}
+		// 1 字节 的字符可直接跳过
+	}
+
+	return true
+}
