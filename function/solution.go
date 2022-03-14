@@ -923,3 +923,37 @@ func validUtf8(data []int) bool {
 
 	return true
 }
+
+/* 599. 两个列表的最小索引总和 */
+func findRestaurant(list1 []string, list2 []string) (ans []string) {
+
+	len1, len2 := len(list1), len(list2)
+
+	indexes := map[string]int{}
+	var shorterList, longerList []string
+	if len1 <= len2 {
+		shorterList = list1
+		longerList = list2
+	} else {
+		shorterList = list2
+		longerList = list1
+	}
+
+	for i, s := range shorterList {
+		indexes[s] = i
+	}
+
+	min := math.MaxInt32
+	for i, s := range longerList {
+		if j, exist := indexes[s]; exist {
+			if i + j < min {
+				min = i + j
+				ans = []string{s}
+			} else if i + j == min {
+				ans = append(ans, s)
+			}
+		}
+	}
+
+	return
+}

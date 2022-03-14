@@ -307,3 +307,13 @@ func TestValidUtf8(t *testing.T) {
 
 	assertEqual(t, false, ans)
 }
+
+func TestFindRestaurant(t *testing.T) {
+
+	list1 := []string{"Shogun","Tapioca Express","Burger King","KFC"}
+	list2 := []string{"KFC","Burger King","Tapioca Express","Shogun"}
+
+	ans := findRestaurant(list1, list2)
+
+	assertEqual(t, []string{"KFC","Burger King","Tapioca Express","Shogun"}, ans)
+}
