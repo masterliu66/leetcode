@@ -957,3 +957,28 @@ func findRestaurant(list1 []string, list2 []string) (ans []string) {
 
 	return
 }
+
+/* 2044. 统计按位或能得到最大值的子集数目 */
+func countMaxOrSubsets(nums []int) int {
+
+	n := len(nums)
+
+	max := 0
+	ans := 0
+	for mask := 1; mask < 1 << n; mask++ {
+		val := 0
+		for i, num := range nums {
+			if mask >> i & 1 == 1 {
+				val |= num
+			}
+		}
+		if val > max {
+			max = val
+			ans = 1
+		} else if val == max {
+			ans++
+		}
+	}
+
+	return ans
+}

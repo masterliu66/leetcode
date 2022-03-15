@@ -317,3 +317,12 @@ func TestFindRestaurant(t *testing.T) {
 
 	assertEqual(t, []string{"KFC","Burger King","Tapioca Express","Shogun"}, ans)
 }
+
+func TestCountMaxOrSubsets(t *testing.T) {
+
+	nums := []int{3,2,1,5}
+
+	ans := countMaxOrSubsets(nums)
+
+	assertEqual(t, 6, ans)
+}
