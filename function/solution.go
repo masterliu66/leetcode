@@ -1,6 +1,7 @@
 package function
 
 import (
+	"container/list"
 	"fmt"
 	"math"
 	"math/bits"
@@ -981,4 +982,86 @@ func countMaxOrSubsets(nums []int) int {
 	}
 
 	return ans
+}
+
+/* 432. 全 O(1) 的数据结构 */
+type AllOne struct {
+	*list.List
+	nodes map[string]*list.Element
+}
+
+type AllOneNode struct {
+	keys Set
+	count int
+}
+
+func Constructor() AllOne {
+	return AllOne{list.New(), map[string]*list.Element{}}
+}
+
+
+func (this *AllOne) Inc(key string)  {
+	node, ok := this.nodes[key]
+	if ok {
+		curNode := node.Value.(AllOneNode)
+		if next := node.Next(); next == nil || next.Value.(AllOneNode).count > curNode.count+1 {
+			this.nodes[key] = this.InsertAfter(AllOneNode{newSet(key), curNode.count + 1}, node)
+		} else {
+			keys := next.Value.(AllOneNode).keys
+			keys.add(key)
+			this.nodes[key] = next
+		}
+		curNode.keys.remove(key)
+		if curNode.keys.isEmpty() {
+			this.Remove(node)
+		}
+	} else {
+		if this.Front() == nil || this.Front().Value.(AllOneNode).count > 1 {
+			this.nodes[key] = this.PushFront(AllOneNode{newSet(key), 1})
+		} else {
+			keys := this.Front().Value.(AllOneNode).keys
+			keys.add(key)
+			this.nodes[key] = this.Front()
+		}
+	}
+}
+
+
+func (this *AllOne) Dec(key string)  {
+	cur := this.nodes[key]
+	curNode := cur.Value.(AllOneNode)
+	if curNode.count > 1 {
+		if pre := cur.Prev(); pre == nil || pre.Value.(AllOneNode).count < curNode.count-1 {
+			this.nodes[key] = this.InsertBefore(AllOneNode{newSet(key), curNode.count - 1}, cur)
+		} else {
+			keys := pre.Value.(AllOneNode).keys
+			keys.add(key)
+			this.nodes[key] = pre
+		}
+	} else { // key 仅出现一次，将其移出 nodes
+		delete(this.nodes, key)
+	}
+	curNode.keys.remove(key)
+	if curNode.keys.isEmpty() {
+		this.Remove(cur)
+	}
+}
+
+
+func (this *AllOne) GetMaxKey() string {
+	element := this.Back()
+	if element != nil {
+		keys := element.Value.(AllOneNode).keys
+		return keys.get()
+	}
+	return ""
+}
+
+func (this *AllOne) GetMinKey() string {
+	element := this.Front()
+	if element != nil {
+		keys := element.Value.(AllOneNode).keys
+		return keys.get()
+	}
+	return ""
 }
