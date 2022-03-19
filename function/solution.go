@@ -1065,3 +1065,43 @@ func (this *AllOne) GetMinKey() string {
 	}
 	return ""
 }
+
+/* 606. 根据二叉树创建字符串 */
+func tree2str(root *TreeNode) string {
+
+	builder := strings.Builder{}
+
+	var preOrder func(*TreeNode)
+	preOrder = func(node *TreeNode) {
+
+		if node == nil {
+			return
+		}
+
+		if node != root {
+			builder.WriteString("(")
+		}
+
+		builder.WriteString(strconv.Itoa(node.Val))
+
+		if node.Left != nil {
+			preOrder(node.Left)
+
+		}
+
+		if node.Right != nil {
+			if node.Left == nil {
+				builder.WriteString("()")
+			}
+			preOrder(node.Right)
+		}
+
+		if node != root {
+			builder.WriteString(")")
+		}
+	}
+
+	preOrder(root)
+
+	return builder.String()
+}

@@ -326,3 +326,14 @@ func TestCountMaxOrSubsets(t *testing.T) {
 
 	assertEqual(t, 6, ans)
 }
+
+func TestTree2str(t *testing.T) {
+
+	nums := []int{1,2,3, NULL,4}
+
+	root := NewBinaryTree(nums)
+
+	ans := tree2str(root)
+
+	assertEqual(t, "1(2()(4))(3)", ans)
+}
