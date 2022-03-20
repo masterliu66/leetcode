@@ -991,7 +991,7 @@ type AllOne struct {
 }
 
 type AllOneNode struct {
-	keys Set
+	keys *StringSet
 	count int
 }
 
@@ -999,13 +999,12 @@ func Constructor() AllOne {
 	return AllOne{list.New(), map[string]*list.Element{}}
 }
 
-
 func (this *AllOne) Inc(key string)  {
 	node, ok := this.nodes[key]
 	if ok {
 		curNode := node.Value.(AllOneNode)
 		if next := node.Next(); next == nil || next.Value.(AllOneNode).count > curNode.count+1 {
-			this.nodes[key] = this.InsertAfter(AllOneNode{newSet(key), curNode.count + 1}, node)
+			this.nodes[key] = this.InsertAfter(AllOneNode{newStringSet(key), curNode.count + 1}, node)
 		} else {
 			keys := next.Value.(AllOneNode).keys
 			keys.add(key)
@@ -1017,7 +1016,7 @@ func (this *AllOne) Inc(key string)  {
 		}
 	} else {
 		if this.Front() == nil || this.Front().Value.(AllOneNode).count > 1 {
-			this.nodes[key] = this.PushFront(AllOneNode{newSet(key), 1})
+			this.nodes[key] = this.PushFront(AllOneNode{newStringSet(key), 1})
 		} else {
 			keys := this.Front().Value.(AllOneNode).keys
 			keys.add(key)
@@ -1026,13 +1025,12 @@ func (this *AllOne) Inc(key string)  {
 	}
 }
 
-
 func (this *AllOne) Dec(key string)  {
 	cur := this.nodes[key]
 	curNode := cur.Value.(AllOneNode)
 	if curNode.count > 1 {
 		if pre := cur.Prev(); pre == nil || pre.Value.(AllOneNode).count < curNode.count-1 {
-			this.nodes[key] = this.InsertBefore(AllOneNode{newSet(key), curNode.count - 1}, cur)
+			this.nodes[key] = this.InsertBefore(AllOneNode{newStringSet(key), curNode.count - 1}, cur)
 		} else {
 			keys := pre.Value.(AllOneNode).keys
 			keys.add(key)
@@ -1046,7 +1044,6 @@ func (this *AllOne) Dec(key string)  {
 		this.Remove(cur)
 	}
 }
-
 
 func (this *AllOne) GetMaxKey() string {
 	element := this.Back()
@@ -1104,4 +1101,33 @@ func tree2str(root *TreeNode) string {
 	preOrder(root)
 
 	return builder.String()
+}
+
+/* 2039. 网络空闲的时刻 */
+func networkBecomesIdle(edges [][]int, patience []int) int {
+
+	graph := NewGraph(edges)
+
+	queue := Queue{}
+	queue.offer(0)
+
+	seen := newIntSet()
+	seen.add(0)
+	time := 0
+	for distance := 1; !queue.isEmpty(); distance++ {
+		for i, size := 0, queue.len(); i < size; i++ {
+			vertex := queue.poll().(int)
+			seen.add(vertex)
+			for _, next := range graph.next[vertex] {
+				if seen.contains(next) {
+					continue
+				}
+				queue.offer(next)
+				seen.add(next)
+				time = Max(time, (distance*2-1)/patience[next]*patience[next]+distance*2+1)
+			}
+		}
+	}
+
+	return time
 }

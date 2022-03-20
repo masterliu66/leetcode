@@ -327,6 +327,18 @@ func TestCountMaxOrSubsets(t *testing.T) {
 	assertEqual(t, 6, ans)
 }
 
+func TestAllOne(t *testing.T) {
+
+	allOne := Constructor()
+	allOne.Inc("hello")
+	allOne.Inc("hello")
+	assertEqual(t, "hello", allOne.GetMaxKey())
+	assertEqual(t, "hello", allOne.GetMinKey())
+	allOne.Inc("leet")
+	assertEqual(t, "hello", allOne.GetMaxKey())
+	assertEqual(t, "leet", allOne.GetMinKey())
+}
+
 func TestTree2str(t *testing.T) {
 
 	nums := []int{1,2,3, NULL,4}
@@ -336,4 +348,14 @@ func TestTree2str(t *testing.T) {
 	ans := tree2str(root)
 
 	assertEqual(t, "1(2()(4))(3)", ans)
+}
+
+func TestNetworkBecomesIdle(t *testing.T) {
+
+	edges := [][]int{{0,1},{0,2},{1,2}}
+	patience := []int{0,2,1}
+
+	ans := networkBecomesIdle(edges, patience)
+
+	assertEqual(t, 4, ans)
 }
