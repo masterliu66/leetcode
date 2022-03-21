@@ -359,3 +359,15 @@ func TestNetworkBecomesIdle(t *testing.T) {
 
 	assertEqual(t, 4, ans)
 }
+
+func TestFindTarget(t *testing.T) {
+
+	nums := []int{5,3,6,2,4,NULL,7}
+	k := 28
+
+	root := NewBinaryTree(nums)
+
+	ans := findTarget(root, k)
+
+	assertEqual(t, false, ans)
+}

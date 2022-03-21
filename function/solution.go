@@ -1131,3 +1131,31 @@ func networkBecomesIdle(edges [][]int, patience []int) int {
 
 	return time
 }
+
+/* 653. 两数之和 IV - 输入 BST */
+func findTarget(root *TreeNode, k int) bool {
+
+	vals := map[int]bool{}
+
+	var dfs func(node *TreeNode) bool
+	dfs = func(node *TreeNode) bool {
+
+		if node.Left != nil && dfs(node.Left) {
+			return true
+		}
+
+		if vals[k - node.Val] {
+			return true
+		}
+
+		vals[node.Val] = true
+
+		if node.Right != nil && dfs(node.Right) {
+			return true
+		}
+
+		return false
+	}
+
+	return dfs(root)
+}
