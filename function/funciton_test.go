@@ -371,3 +371,12 @@ func TestFindTarget(t *testing.T) {
 
 	assertEqual(t, false, ans)
 }
+
+func TestWinnerOfGame(t *testing.T) {
+
+	colors := "AAABABB"
+
+	ans := winnerOfGame(colors)
+
+	assertEqual(t, true, ans)
+}

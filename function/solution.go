@@ -1159,3 +1159,28 @@ func findTarget(root *TreeNode, k int) bool {
 
 	return dfs(root)
 }
+
+/* 2038. 如果相邻两个颜色均相同则删除当前颜色 */
+func winnerOfGame(colors string) bool {
+
+	// count表示爱丽丝比鲍勃可多操作的次数
+	count := 0
+
+	cur, colorCount := 'A', 0
+	for _, color := range colors {
+		if cur == color {
+			colorCount++
+			if colorCount >= 3 {
+				if cur == 'A' {
+					count++
+				} else {
+					count--
+				}
+			}
+		} else {
+			cur, colorCount = color, 1
+		}
+	}
+
+	return count > 0
+}
