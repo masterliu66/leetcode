@@ -1184,3 +1184,33 @@ func winnerOfGame(colors string) bool {
 
 	return count > 0
 }
+
+/* 440. 字典序的第K小数字 */
+func findKthNumber(n int, k int) int {
+
+	return 1
+}
+
+/* 661. 图片平滑器 */
+func imageSmoother(img [][]int) [][]int {
+
+	m, n := len(img), len(img[0])
+	ret := make([][]int, m)
+	for i := 0; i < m; i++ {
+		ret[i] = make([]int, n)
+		for j := 0; j < n; j++ {
+			num, sum := 0, 0
+			for x := i - 1; x <= i + 1; x++ {
+				for y := j - 1; y <= j + 1; y++ {
+					if x >= 0 && x < m && y >= 0 && y < n {
+						num++
+						sum += img[x][y]
+					}
+				}
+			}
+			ret[i][j] = sum / num
+		}
+	}
+
+	return ret
+}
