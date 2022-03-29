@@ -380,3 +380,12 @@ func TestWinnerOfGame(t *testing.T) {
 
 	assertEqual(t, true, ans)
 }
+
+func TestMaxConsecutiveAnswers(t *testing.T) {
+
+	answerKey, k := "TTFTTFTT", 1
+
+	ans := maxConsecutiveAnswers(answerKey, k)
+
+	assertEqual(t, 5, ans)
+}

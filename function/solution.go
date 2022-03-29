@@ -1214,3 +1214,65 @@ func imageSmoother(img [][]int) [][]int {
 
 	return ret
 }
+
+/* 172. 阶乘后的零 */
+func trailingZeroes(n int) int {
+
+	ans := 0
+	for i := 5; i <= n; i += 5 {
+		for x := i; x % 5 == 0; x /= 5 {
+			ans++
+		}
+	}
+
+	return ans
+}
+
+/* 2024. 考试的最大困扰度 */
+func maxConsecutiveAnswers(answerKey string, k int) int {
+
+	n := len(answerKey)
+
+	tCount := make([]int, n + 1)
+	fCount := make([]int, n + 1)
+
+	// 分别记录T和F的前缀和
+	for i, key := range answerKey {
+		if key == 'T' {
+			tCount[i + 1] = tCount[i] + 1
+			fCount[i + 1] = fCount[i]
+		} else {
+			tCount[i + 1] = tCount[i]
+			fCount[i + 1] = fCount[i] + 1
+		}
+	}
+
+	search := func(count []int) int {
+		max := 0
+		// 枚举左端点
+		for i := 0; i < n; i++ {
+			// 剩余可能最大值小于max, 可以提前结束循环
+			if n - i <= max {
+				break
+			}
+			l, r := i, n - 1
+			// 二分查找右端点
+			for l < r {
+				mid := l + (r - l + 1) / 2
+				// k = 区间长度 - T或F的个数
+				ctn := (mid - i + 1) - (count[mid + 1] - count[i])
+				if ctn > k {
+					r = mid - 1
+				} else {
+					l = mid
+				}
+			}
+			max = Max(max, r - i + 1)
+		}
+		return max
+	}
+
+	ans := Max(search(tCount), search(fCount))
+
+	return ans
+}
