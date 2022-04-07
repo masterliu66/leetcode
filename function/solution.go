@@ -1276,3 +1276,28 @@ func maxConsecutiveAnswers(answerKey string, k int) int {
 
 	return ans
 }
+
+/* 796. 旋转字符串 */
+func rotateString(s string, goal string) bool {
+
+	n := len(s)
+	if len(goal) != n {
+		return false
+	}
+
+	for start := 0; start < n; start++ {
+		equal := true
+		for i := 0; i < n; i++ {
+			j := (i + start + n) % n
+			if goal[i] != s[j] {
+				equal = false
+				break
+			}
+		}
+		if equal {
+			return true
+		}
+	}
+
+	return false
+}

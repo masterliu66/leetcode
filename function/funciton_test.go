@@ -389,3 +389,12 @@ func TestMaxConsecutiveAnswers(t *testing.T) {
 
 	assertEqual(t, 5, ans)
 }
+
+func TestRotateString(t *testing.T) {
+
+	s, goal := "abcde", "cdeab"
+
+	ans := rotateString(s, goal)
+
+	assertEqual(t, true, ans)
+}
