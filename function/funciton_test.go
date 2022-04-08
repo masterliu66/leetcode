@@ -398,3 +398,14 @@ func TestRotateString(t *testing.T) {
 
 	assertEqual(t, true, ans)
 }
+
+func TestLevelOrder(t *testing.T) {
+
+	nums := []int{1,NULL,2,3,4,5,NULL,NULL,6,7,NULL,8,NULL,9,10,NULL,NULL,11,NULL,12,NULL,13,NULL,NULL,14}
+
+	root := NewTree(nums)
+
+	ans := levelOrder(root)
+
+	assertEqual(t, [][]int{{1},{2,3,4,5},{6,7,8,9,10},{11,12,13},{14}}, ans)
+}

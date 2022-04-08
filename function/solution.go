@@ -1301,3 +1301,34 @@ func rotateString(s string, goal string) bool {
 
 	return false
 }
+
+/* 429. N 叉树的层序遍历 */
+func levelOrder(root *Node) [][]int {
+
+	if root == nil {
+		return [][]int{}
+	}
+
+	var ans [][]int
+
+	queue := []*Node{root}
+
+	for len(queue) > 0 {
+
+		var vals []int
+		for i, size := 0, len(queue); i < size; i++ {
+			node := queue[0]
+			queue = queue[1:]
+			vals = append(vals, node.Val)
+			if len(node.Children) > 0 {
+				for _, child := range node.Children {
+					queue = append(queue, child)
+				}
+			}
+		}
+
+		ans = append(ans, vals)
+	}
+
+	return ans
+}
