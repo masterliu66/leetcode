@@ -409,3 +409,13 @@ func TestLevelOrder(t *testing.T) {
 
 	assertEqual(t, [][]int{{1},{2,3,4,5},{6,7,8,9,10},{11,12,13},{14}}, ans)
 }
+
+func TestCountNumbersWithUniqueDigits(t *testing.T) {
+
+	nums := []int{1, 10, 91, 739, 5275, 32491, 168571, 712891, 2345851}
+
+	for i, num := range nums {
+		ans := countNumbersWithUniqueDigits(i)
+		assertEqual(t, num, ans)
+	}
+}

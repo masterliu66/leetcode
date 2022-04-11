@@ -1328,3 +1328,26 @@ func levelOrder(root *Node) [][]int {
 
 	return ans
 }
+
+/* 357. 统计各位数字都不同的数字个数 */
+func countNumbersWithUniqueDigits(n int) int {
+
+	if n == 0 {
+		return 1
+	}
+
+	// f[i]表示长度为i的各位数字都不同的数字个数
+	f := make([]int, n)
+	f[0] = 10
+
+	ans := f[0]
+	for i := 1; i < n; i++ {
+		f[i] = 9
+		for j := 9; j >= 9 - (i+1) + 2; j-- {
+			f[i] *= j
+		}
+		ans += f[i]
+	}
+
+	return ans
+}
