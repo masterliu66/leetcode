@@ -1,6 +1,7 @@
 package function
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -418,4 +419,20 @@ func TestCountNumbersWithUniqueDigits(t *testing.T) {
 		ans := countNumbersWithUniqueDigits(i)
 		assertEqual(t, num, ans)
 	}
+}
+
+func TestConstruct(t *testing.T) {
+
+	grid := [][]int{{1, 1, 1, 1, 0, 0, 0, 0},
+					{1, 1, 1, 1, 0, 0, 0, 0},
+					{1, 1, 1, 1, 1, 1, 1, 1},
+					{1, 1, 1, 1, 1, 1, 1, 1},
+					{1, 1, 1, 1, 0, 0, 0, 0},
+					{1, 1, 1, 1, 0, 0, 0, 0},
+					{1, 1, 1, 1, 0, 0, 0, 0},
+					{1, 1, 1, 1, 0, 0, 0, 0}}
+
+	ans := construct(grid)
+
+	fmt.Println(ans)
 }

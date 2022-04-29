@@ -1351,3 +1351,42 @@ func countNumbersWithUniqueDigits(n int) int {
 
 	return ans
 }
+
+/* 427. 建立四叉树 */
+func construct(grid [][]int) *QuadNode {
+
+	n := len(grid)
+
+	preSum := make([][]int, n + 1)
+	preSum[0] = make([]int, n + 1)
+
+	for i, row := range grid {
+		preSum[i + 1] = make([]int, n + 1)
+		for j, v := range row {
+			preSum[i + 1][j + 1] = preSum[i][j + 1] + preSum[i + 1][j] - preSum[i][j] + v
+		}
+	}
+
+	var divide func(int, int, int, int) *QuadNode
+	divide = func(x1, y1, x2, y2 int) *QuadNode {
+		sum := preSum[y2][x2] - preSum[y1][x2] - preSum[y2][x1] + preSum[y1][x1]
+		// 矩阵的值全相同
+		if sum == 0 {
+			return &QuadNode{Val: false, IsLeaf: true}
+		}
+		w, h := x2 - x1, y2 - y1
+		if sum == w * h {
+			return &QuadNode{Val: true, IsLeaf: true}
+		}
+		midX, midY := (x1 + x2) / 2, (y1 + y2) / 2
+		return &QuadNode{
+			true, false,
+			divide(x1, y1, midX, midY),
+			divide(midX, y1, x2, midY),
+			divide(x1, midY, midX, y2),
+			divide(midX, midY, x2, y2),
+		}
+	}
+
+	return divide(0, 0, n, n)
+}
