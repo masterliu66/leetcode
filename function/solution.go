@@ -1390,3 +1390,20 @@ func construct(grid [][]int) *QuadNode {
 
 	return divide(0, 0, n, n)
 }
+
+/* 713. 乘积小于 K 的子数组 */
+func numSubarrayProductLessThanK(nums []int, k int) int {
+
+	n := len(nums)
+	product := 1
+	ans := 0
+	for i, j := 0, 0; i < n; i++ {
+		product *= nums[i]
+		for ; j <= i && product >= k; j++ {
+			product /= nums[j]
+		}
+		ans += i - j + 1
+	}
+
+	return ans
+}

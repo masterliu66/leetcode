@@ -436,3 +436,13 @@ func TestConstruct(t *testing.T) {
 
 	fmt.Println(ans)
 }
+
+func TestNumSubarrayProductLessThanK(t *testing.T) {
+
+	nums := []int{10,5,2,6}
+	k := 100
+
+	ans := numSubarrayProductLessThanK(nums, k)
+
+	assertEqual(t, 8, ans)
+}
