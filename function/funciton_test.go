@@ -446,3 +446,20 @@ func TestNumSubarrayProductLessThanK(t *testing.T) {
 
 	assertEqual(t, 8, ans)
 }
+
+func TestCircularQueue(t *testing.T) {
+
+	k := 3
+	circularQueue := NewCircularQueue(k)
+	assertEqual(t, true, circularQueue.EnQueue(1))
+	assertEqual(t, true, circularQueue.EnQueue(2))
+	assertEqual(t, true, circularQueue.EnQueue(3))
+	assertEqual(t, false, circularQueue.EnQueue(4))
+	assertEqual(t, 3, circularQueue.Rear())
+	assertEqual(t, true, circularQueue.IsFull())
+	assertEqual(t, true, circularQueue.DeQueue())
+	assertEqual(t, true, circularQueue.EnQueue(4))
+	assertEqual(t, 4, circularQueue.Rear())
+	assertEqual(t, 2, circularQueue.Front())
+
+}
