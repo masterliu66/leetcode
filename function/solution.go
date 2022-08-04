@@ -1409,6 +1409,28 @@ func numSubarrayProductLessThanK(nums []int, k int) int {
 	return ans
 }
 
+/* 899.有序队列 */
+func orderlyQueue(s string, k int) string {
+
+	if k == 1 {
+		ans := s
+		for i, n := 0, len(s); i < n; i++ {
+			tmp := s[i:] + s[:i]
+			if tmp < ans {
+				ans = tmp
+			}
+		}
+		return ans
+	}
+
+	chars := []byte(s)
+	sort.Slice(chars, func(i, j int) bool {
+		return chars[i] < chars[j]
+	})
+
+	return string(chars)
+}
+
 /* 1403. 非递增顺序的最小子序列 */
 func minSubsequence(nums []int) []int {
 

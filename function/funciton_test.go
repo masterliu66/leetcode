@@ -462,6 +462,12 @@ func TestCircularQueue(t *testing.T) {
 	assertEqual(t, 2, circularQueue.Front())
 }
 
+func TestOrderlyQueue(t *testing.T) {
+	s, k := "baaca", 3
+	ans := orderlyQueue(s, k)
+	assertEqual(t, "aaabc", ans)
+}
+
 func TestMinSubsequence(t *testing.T) {
 	nums := []int{4, 3, 10, 9, 8}
 	ans := minSubsequence(nums)
