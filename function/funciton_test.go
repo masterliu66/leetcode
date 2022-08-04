@@ -70,9 +70,9 @@ func TestMaxNumberOfBalloons(t *testing.T) {
 	assertEqual(t, 2, ans)
 }
 
-func TestSingleNonDuplicate(t *testing.T)  {
+func TestSingleNonDuplicate(t *testing.T) {
 
-	nums := []int{3,3,7,7,10,11,11}
+	nums := []int{3, 3, 7, 7, 10, 11, 11}
 
 	ans := singleNonDuplicate(nums)
 
@@ -81,7 +81,7 @@ func TestSingleNonDuplicate(t *testing.T)  {
 
 func TestLuckyNumbers(t *testing.T) {
 
-	matrix := [][]int{{1,10,4,2},{9,3,8,7},{15,16,17,12}}
+	matrix := [][]int{{1, 10, 4, 2}, {9, 3, 8, 7}, {15, 16, 17, 12}}
 
 	ans := luckyNumbers(matrix)
 
@@ -99,7 +99,7 @@ func TestKnightProbability(t *testing.T) {
 
 func TestFindCenter(t *testing.T) {
 
-	edges := [][]int{{1,2},{5,1},{1,3},{1,4}}
+	edges := [][]int{{1, 2}, {5, 1}, {1, 3}, {1, 4}}
 
 	ans := findCenter(edges)
 
@@ -108,12 +108,12 @@ func TestFindCenter(t *testing.T) {
 
 func TestPancakeSort(t *testing.T) {
 
-	arr := []int{3,2,4,1}
+	arr := []int{3, 2, 4, 1}
 
 	ans := pancakeSort(arr)
 
-	assertEqual(t, []int{1,2,3,4}, arr)
-	assertLessOrEqual(t, len(ans), len(arr) * 10)
+	assertEqual(t, []int{1, 2, 3, 4}, arr)
+	assertLessOrEqual(t, len(ans), len(arr)*10)
 }
 
 func TestIsOneBitCharacter(t *testing.T) {
@@ -136,7 +136,7 @@ func TestPushDominoes(t *testing.T) {
 
 func TestNumberOfGoodSubsets(t *testing.T) {
 
-	nums := []int{4,2,3,15}
+	nums := []int{4, 2, 3, 15}
 
 	ans := numberOfGoodSubsets(nums)
 
@@ -154,10 +154,10 @@ func TestReverseOnlyLetters(t *testing.T) {
 
 func TestFindBall(t *testing.T) {
 
-	grid := [][]int{{ 1,  1,  1,  1,  1,  1},
-					{-1, -1, -1, -1, -1, -1},
-					{ 1,  1,  1,  1,  1,  1},
-					{-1, -1, -1, -1, -1, -1}}
+	grid := [][]int{{1, 1, 1, 1, 1, 1},
+		{-1, -1, -1, -1, -1, -1},
+		{1, 1, 1, 1, 1, 1},
+		{-1, -1, -1, -1, -1, -1}}
 
 	ans := findBall(grid)
 
@@ -175,7 +175,7 @@ func TestComplexNumberMultiply(t *testing.T) {
 
 func TestMaximumDifference(t *testing.T) {
 
-	nums := []int{7,1,5,4}
+	nums := []int{7, 1, 5, 4}
 
 	ans := maximumDifference(nums)
 
@@ -184,7 +184,7 @@ func TestMaximumDifference(t *testing.T) {
 
 func TestOptimalDivision(t *testing.T) {
 
-	nums := []int{1000,100,10,2}
+	nums := []int{1000, 100, 10, 2}
 
 	ans := optimalDivision(nums)
 
@@ -194,7 +194,7 @@ func TestOptimalDivision(t *testing.T) {
 func TestMaximumRequests(t *testing.T) {
 
 	n := 5
-	requests := [][]int{{0,1},{1,0},{0,1},{1,2},{2,0},{3,4}}
+	requests := [][]int{{0, 1}, {1, 0}, {0, 1}, {1, 2}, {2, 0}, {3, 4}}
 
 	ans := maximumRequests(n, requests)
 
@@ -231,12 +231,12 @@ func TestFindLUSlength(t *testing.T) {
 
 func TestGoodDaysToRobBank(t *testing.T) {
 
-	security := []int{5,3,3,3,5,6,2}
+	security := []int{5, 3, 3, 3, 5, 6, 2}
 	time := 2
 
 	ans := goodDaysToRobBank(security, time)
 
-	assertEqual(t, []int{2,3}, ans)
+	assertEqual(t, []int{2, 3}, ans)
 }
 
 func TestConvertToBase7(t *testing.T) {
@@ -252,16 +252,16 @@ func TestPlatesBetweenCandles(t *testing.T) {
 
 	s := "***|**|*****|**||**|*"
 
-	queries := [][]int{{1,17},{4,5},{14,17},{5,11},{15,16}}
+	queries := [][]int{{1, 17}, {4, 5}, {14, 17}, {5, 11}, {15, 16}}
 
 	ans := platesBetweenCandles(s, queries)
 
-	assertEqual(t, []int{9,0,0,0,0}, ans)
+	assertEqual(t, []int{9, 0, 0, 0, 0}, ans)
 }
 
 func TestBestRotation(t *testing.T) {
 
-	nums := []int{2,3,1,4,0}
+	nums := []int{2, 3, 1, 4, 0}
 
 	ans := bestRotation(nums)
 
@@ -276,18 +276,17 @@ func TestPreorder(t *testing.T) {
 
 	ans := preorder(root)
 
-	assertEqual(t, []int{1,3,5,6,2,4}, ans)
+	assertEqual(t, []int{1, 3, 5, 6, 2, 4}, ans)
 }
 
 func TestCountHighestScoreNodes(t *testing.T) {
 
-	parents := []int{-1,2,0,2,0}
+	parents := []int{-1, 2, 0, 2, 0}
 
 	ans := countHighestScoreNodes(parents)
 
 	assertEqual(t, 3, ans)
 }
-
 
 func TestPostorder(t *testing.T) {
 
@@ -297,12 +296,12 @@ func TestPostorder(t *testing.T) {
 
 	ans := postorder(root)
 
-	assertEqual(t, []int{5,6,3,2,4,1}, ans)
+	assertEqual(t, []int{5, 6, 3, 2, 4, 1}, ans)
 }
 
 func TestValidUtf8(t *testing.T) {
 
-	data := []int{235,140,4}
+	data := []int{235, 140, 4}
 
 	ans := validUtf8(data)
 
@@ -311,17 +310,17 @@ func TestValidUtf8(t *testing.T) {
 
 func TestFindRestaurant(t *testing.T) {
 
-	list1 := []string{"Shogun","Tapioca Express","Burger King","KFC"}
-	list2 := []string{"KFC","Burger King","Tapioca Express","Shogun"}
+	list1 := []string{"Shogun", "Tapioca Express", "Burger King", "KFC"}
+	list2 := []string{"KFC", "Burger King", "Tapioca Express", "Shogun"}
 
 	ans := findRestaurant(list1, list2)
 
-	assertEqual(t, []string{"KFC","Burger King","Tapioca Express","Shogun"}, ans)
+	assertEqual(t, []string{"KFC", "Burger King", "Tapioca Express", "Shogun"}, ans)
 }
 
 func TestCountMaxOrSubsets(t *testing.T) {
 
-	nums := []int{3,2,1,5}
+	nums := []int{3, 2, 1, 5}
 
 	ans := countMaxOrSubsets(nums)
 
@@ -342,7 +341,7 @@ func TestAllOne(t *testing.T) {
 
 func TestTree2str(t *testing.T) {
 
-	nums := []int{1,2,3, NULL,4}
+	nums := []int{1, 2, 3, NULL, 4}
 
 	root := NewBinaryTree(nums)
 
@@ -353,8 +352,8 @@ func TestTree2str(t *testing.T) {
 
 func TestNetworkBecomesIdle(t *testing.T) {
 
-	edges := [][]int{{0,1},{0,2},{1,2}}
-	patience := []int{0,2,1}
+	edges := [][]int{{0, 1}, {0, 2}, {1, 2}}
+	patience := []int{0, 2, 1}
 
 	ans := networkBecomesIdle(edges, patience)
 
@@ -363,7 +362,7 @@ func TestNetworkBecomesIdle(t *testing.T) {
 
 func TestFindTarget(t *testing.T) {
 
-	nums := []int{5,3,6,2,4,NULL,7}
+	nums := []int{5, 3, 6, 2, 4, NULL, 7}
 	k := 28
 
 	root := NewBinaryTree(nums)
@@ -402,13 +401,13 @@ func TestRotateString(t *testing.T) {
 
 func TestLevelOrder(t *testing.T) {
 
-	nums := []int{1,NULL,2,3,4,5,NULL,NULL,6,7,NULL,8,NULL,9,10,NULL,NULL,11,NULL,12,NULL,13,NULL,NULL,14}
+	nums := []int{1, NULL, 2, 3, 4, 5, NULL, NULL, 6, 7, NULL, 8, NULL, 9, 10, NULL, NULL, 11, NULL, 12, NULL, 13, NULL, NULL, 14}
 
 	root := NewTree(nums)
 
 	ans := levelOrder(root)
 
-	assertEqual(t, [][]int{{1},{2,3,4,5},{6,7,8,9,10},{11,12,13},{14}}, ans)
+	assertEqual(t, [][]int{{1}, {2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13}, {14}}, ans)
 }
 
 func TestCountNumbersWithUniqueDigits(t *testing.T) {
@@ -424,13 +423,13 @@ func TestCountNumbersWithUniqueDigits(t *testing.T) {
 func TestConstruct(t *testing.T) {
 
 	grid := [][]int{{1, 1, 1, 1, 0, 0, 0, 0},
-					{1, 1, 1, 1, 0, 0, 0, 0},
-					{1, 1, 1, 1, 1, 1, 1, 1},
-					{1, 1, 1, 1, 1, 1, 1, 1},
-					{1, 1, 1, 1, 0, 0, 0, 0},
-					{1, 1, 1, 1, 0, 0, 0, 0},
-					{1, 1, 1, 1, 0, 0, 0, 0},
-					{1, 1, 1, 1, 0, 0, 0, 0}}
+		{1, 1, 1, 1, 0, 0, 0, 0},
+		{1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 0, 0, 0, 0},
+		{1, 1, 1, 1, 0, 0, 0, 0},
+		{1, 1, 1, 1, 0, 0, 0, 0},
+		{1, 1, 1, 1, 0, 0, 0, 0}}
 
 	ans := construct(grid)
 
@@ -439,7 +438,7 @@ func TestConstruct(t *testing.T) {
 
 func TestNumSubarrayProductLessThanK(t *testing.T) {
 
-	nums := []int{10,5,2,6}
+	nums := []int{10, 5, 2, 6}
 	k := 100
 
 	ans := numSubarrayProductLessThanK(nums, k)
@@ -461,5 +460,10 @@ func TestCircularQueue(t *testing.T) {
 	assertEqual(t, true, circularQueue.EnQueue(4))
 	assertEqual(t, 4, circularQueue.Rear())
 	assertEqual(t, 2, circularQueue.Front())
+}
 
+func TestMinSubsequence(t *testing.T) {
+	nums := []int{4, 3, 10, 9, 8}
+	ans := minSubsequence(nums)
+	assertEqual(t, []int{10, 9}, ans)
 }

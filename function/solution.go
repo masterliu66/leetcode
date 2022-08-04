@@ -199,13 +199,13 @@ func singleNonDuplicate(nums []int) int {
 
 	n := len(nums)
 
-	l, r := 0, n - 1
+	l, r := 0, n-1
 
 	for l < r {
 		mid := (l + r) >> 1
 		// mid为偶数时与右边元素进行比较, 为奇数时与左边元素进行比较, 相同则说明单一元素在mid右侧
 		// 当 mid 是偶数时 mid + 1 = mid ^ 1, 当 mid 是奇数时 mid - 1 = mid ^ 1
-		if nums[mid] == nums[mid ^ 1] {
+		if nums[mid] == nums[mid^1] {
 			l = mid + 1
 		} else {
 			r = mid
@@ -216,7 +216,7 @@ func singleNonDuplicate(nums []int) int {
 }
 
 /* 1380. 矩阵中的幸运数 */
-func luckyNumbers (matrix [][]int) (ans []int) {
+func luckyNumbers(matrix [][]int) (ans []int) {
 
 	m, n := len(matrix), len(matrix[0])
 
@@ -247,10 +247,10 @@ func luckyNumbers (matrix [][]int) (ans []int) {
 func knightProbability(n int, k int, row int, column int) float64 {
 
 	// 8个可以移动的方向
-	direction := []struct{x, y int}{{-2, -1}, {-1, -2}, {1, -2}, {2, -1}, {-2, 1}, {-1, 2}, {1, 2}, {2, 1}}
+	direction := []struct{ x, y int }{{-2, -1}, {-1, -2}, {1, -2}, {2, -1}, {-2, 1}, {-1, 2}, {1, 2}, {2, 1}}
 
 	// dp[k][i][j] 表示骑士从(i, j)出发, 移动k次后依旧处于棋盘上的概率
-	dp := make([][][]float64, k + 1)
+	dp := make([][][]float64, k+1)
 	for step := range dp {
 		dp[step] = make([][]float64, n)
 		for i := 0; i < n; i++ {
@@ -260,7 +260,7 @@ func knightProbability(n int, k int, row int, column int) float64 {
 					dp[step][i][j] = 1
 				} else {
 					for _, d := range direction {
-						if x, y := i + d.x, j + d.y; x >= 0 && x < n && y >= 0 && y < n {
+						if x, y := i+d.x, j+d.y; x >= 0 && x < n && y >= 0 && y < n {
 							dp[step][i][j] += dp[step-1][x][y] / 8
 						}
 					}
@@ -283,7 +283,7 @@ func findCenter(edges [][]int) int {
 
 	n := len(nodes)
 	for node, ctn := range nodes {
-		if ctn == n - 1 {
+		if ctn == n-1 {
 			return node
 		}
 	}
@@ -296,7 +296,7 @@ func pancakeSort(arr []int) []int {
 
 	var flip func(int)
 	flip = func(k int) {
-		for low, high := 0, k; low < high; low, high = low + 1, high - 1 {
+		for low, high := 0, k; low < high; low, high = low+1, high-1 {
 			arr[low], arr[high] = arr[high], arr[low]
 		}
 	}
@@ -309,13 +309,13 @@ func pancakeSort(arr []int) []int {
 				maxNumIndex = i
 			}
 		}
-		if maxNumIndex == n - 1  {
+		if maxNumIndex == n-1 {
 			continue
 		}
 		if maxNumIndex != 0 {
 			// 将最大数移至首位
 			flip(maxNumIndex)
-			ans = append(ans, maxNumIndex + 1)
+			ans = append(ans, maxNumIndex+1)
 		}
 		// 翻转前right个数
 		flip(n - 1)
@@ -328,12 +328,12 @@ func pancakeSort(arr []int) []int {
 /* 717. 1比特与2比特字符 */
 func isOneBitCharacter(bits []int) bool {
 
-	n, i := len(bits), len(bits) - 2
+	n, i := len(bits), len(bits)-2
 	for i >= 0 && bits[i] == 1 {
 		i--
 	}
 
-	return (n - i) % 2 == 0
+	return (n-i)%2 == 0
 }
 
 /* 838. 推多米诺 */
@@ -355,7 +355,7 @@ func pushDominoes(dominoes string) string {
 			for ; i < j; i++ {
 				ans[i] = right
 			}
-		// 方向相反
+			// 方向相反
 		} else if left == 'R' && right == 'L' {
 			for k := j - 1; i < k; k-- {
 				ans[i] = 'R'
@@ -378,11 +378,11 @@ func numberOfGoodSubsets(nums []int) int {
 
 	var ctn [30]int
 	for _, num := range nums {
-		ctn[num - 1]++
+		ctn[num-1]++
 	}
 
 	primes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29}
-	masks := map[int]int {
+	masks := map[int]int{
 		// 质数
 		2: 0x01, 3: 0x02, 5: 0x04, 7: 0x08, 11: 0x10, 13: 0x20, 17: 0x40, 19: 0x80, 23: 0x100, 29: 0x200,
 		// 可以分解为不同质因数的合数
@@ -390,7 +390,7 @@ func numberOfGoodSubsets(nums []int) int {
 	}
 
 	// dp[i][mask] 表示只取<=i的数, 在状态mask下的方案数
-	dp := make([]int, 1 << len(primes))
+	dp := make([]int, 1<<len(primes))
 	dp[0] = 1
 	// 所有数字1都可以取或者不取
 	for i := 0; i < ctn[0]; i++ {
@@ -398,13 +398,13 @@ func numberOfGoodSubsets(nums []int) int {
 	}
 
 	for i := 2; i <= 30; i++ {
-		if ctn[i - 1] == 0 || masks[i] == 0 {
+		if ctn[i-1] == 0 || masks[i] == 0 {
 			continue
 		}
 		for mask := 1 << len(primes); mask > 0; mask-- {
 			// masks[i]为当前状态的子集
-			if mask & masks[i] == masks[i] {
-				dp[mask] = (dp[mask] + dp[mask ^ (masks[i])] * ctn[i - 1]) % mod
+			if mask&masks[i] == masks[i] {
+				dp[mask] = (dp[mask] + dp[mask^(masks[i])]*ctn[i-1]) % mod
 			}
 		}
 	}
@@ -424,7 +424,7 @@ func reverseOnlyLetters(s string) string {
 
 	runes := []rune(s)
 
-	for l, r := 0, n - 1; l < r; {
+	for l, r := 0, n-1; l < r; {
 		if !unicode.IsLetter(runes[l]) {
 			l++
 			continue
@@ -459,7 +459,7 @@ func findBall(grid [][]int) []int {
 			return -1
 		}
 
-		return dfs(row + 1, col)
+		return dfs(row+1, col)
 	}
 
 	ans := make([]int, n)
@@ -478,7 +478,7 @@ func complexNumberMultiply(num1 string, num2 string) string {
 
 	ansComplex := num1Complex * num2Complex
 
-	return fmt.Sprintf("%d+%di", int (real(ansComplex)), int (imag(ansComplex)))
+	return fmt.Sprintf("%d+%di", int(real(ansComplex)), int(imag(ansComplex)))
 }
 
 /* 2016. 增量元素之间的最大差值 */
@@ -491,7 +491,7 @@ func maximumDifference(nums []int) int {
 	maxDiff := -1
 	for _, num := range nums[1:] {
 		if num > min {
-			maxDiff = Max(maxDiff, num - min)
+			maxDiff = Max(maxDiff, num-min)
 		} else {
 			min = num
 		}
@@ -530,14 +530,15 @@ func maximumRequests(n int, requests [][]int) (ans int) {
 
 	m := len(requests)
 
-	outer: for mask := 1; mask < 1 << m; mask++ {
+outer:
+	for mask := 1; mask < 1<<m; mask++ {
 		onesCount := bits.OnesCount(uint(mask))
 		if onesCount <= ans {
 			continue
 		}
 		ctn := make([]int, n)
 		for i, request := range requests {
-			if (mask >> i) & 1 == 1 {
+			if (mask>>i)&1 == 1 {
 				ctn[request[0]]--
 				ctn[request[1]]++
 			}
@@ -584,7 +585,7 @@ func convert(s string, numRows int) string {
 /* 2104. 子数组范围和 */
 func subArrayRanges(nums []int) int64 {
 
-	type Tuple struct {minLeft, maxLeft, minRight, maxRight int}
+	type Tuple struct{ minLeft, maxLeft, minRight, maxRight int }
 
 	n := len(nums)
 
@@ -639,8 +640,8 @@ func subArrayRanges(nums []int) int64 {
 
 	var sumMax, sumMin int64
 	for i, num := range nums {
-		sumMax += int64(f[i].maxRight - i) * int64(i - f[i].maxLeft) * int64(num)
-		sumMin += int64(f[i].minRight - i) * int64(i - f[i].minLeft) * int64(num)
+		sumMax += int64(f[i].maxRight-i) * int64(i-f[i].maxLeft) * int64(num)
+		sumMin += int64(f[i].minRight-i) * int64(i-f[i].minLeft) * int64(num)
 	}
 
 	return sumMax - sumMin
@@ -664,9 +665,9 @@ func goodDaysToRobBank(security []int, time int) []int {
 	f := make([]int, n)
 	// g[i]表示第i天后连续非递减的最大天数
 	g := make([]int, n)
-	for i := 1;  i < n; i++ {
-		if security[i] <= security[i - 1] {
-			f[i] = f[i - 1] + 1
+	for i := 1; i < n; i++ {
+		if security[i] <= security[i-1] {
+			f[i] = f[i-1] + 1
 		}
 		if security[n-i-1] <= security[n-i] {
 			g[n-i-1] = g[n-i] + 1
@@ -694,11 +695,11 @@ func convertToBase7(num int) string {
 	}
 
 	for num >= 7 {
-		digits = append(digits, '0' + rune(num % 7))
+		digits = append(digits, '0'+rune(num%7))
 		num /= 7
 	}
 
-	digits = append(digits, '0' + rune(num))
+	digits = append(digits, '0'+rune(num))
 
 	if flag {
 		digits = append(digits, '-')
@@ -716,8 +717,8 @@ func platesBetweenCandles(s string, queries [][]int) []int {
 
 	n := len(s)
 
-	plateCtn := make([]int, n + 1)
-	candleCtn := make([]int, n + 1)
+	plateCtn := make([]int, n+1)
+	candleCtn := make([]int, n+1)
 	// k,v表示蜡烛数量为k时的最小下标v
 	candleMinIndex := map[int]int{}
 	candleMaxIndex := map[int]int{}
@@ -738,7 +739,7 @@ func platesBetweenCandles(s string, queries [][]int) []int {
 		left := query[0]
 		right := query[1]
 		// 两只蜡烛以下, 不可能有盘子处于蜡烛之间
-		if candleCtn[right+1] - candleCtn[left] <= 1 {
+		if candleCtn[right+1]-candleCtn[left] <= 1 {
 			ans[i] = 0
 			continue
 		}
@@ -767,7 +768,7 @@ func bestRotation(nums []int) int {
 	g := make([]int, n)
 
 	for i, num := range nums {
-		g[(i+n-num) % n]++
+		g[(i+n-num)%n]++
 		if num <= i {
 			f[0]++
 		}
@@ -899,22 +900,22 @@ func validUtf8(data []int) bool {
 	n := len(data)
 	for i := 0; i < n; i++ {
 		// n 字节 的字符
-		if (data[i] >> 7) & 1 == 1 {
+		if (data[i]>>7)&1 == 1 {
 			ctn := 0
 			for bit := 6; bit >= 0; bit-- {
-				if (data[i] >> bit) & 1 == 0 {
+				if (data[i]>>bit)&1 == 0 {
 					break
 				}
 				ctn++
 			}
 			// 字节数为1或字节数超过4个或剩余字节数不足
-			if ctn == 0 || ctn > 3 || i + ctn >= n {
+			if ctn == 0 || ctn > 3 || i+ctn >= n {
 				return false
 			}
 			for j := 0; j < ctn; j++ {
 				i++
 				// 不是10开头
-				if (data[i] >> 7) & 1 == 0 || (data[i] >> 6) & 1 == 1 {
+				if (data[i]>>7)&1 == 0 || (data[i]>>6)&1 == 1 {
 					return false
 				}
 			}
@@ -947,10 +948,10 @@ func findRestaurant(list1 []string, list2 []string) (ans []string) {
 	min := math.MaxInt32
 	for i, s := range longerList {
 		if j, exist := indexes[s]; exist {
-			if i + j < min {
+			if i+j < min {
 				min = i + j
 				ans = []string{s}
-			} else if i + j == min {
+			} else if i+j == min {
 				ans = append(ans, s)
 			}
 		}
@@ -966,10 +967,10 @@ func countMaxOrSubsets(nums []int) int {
 
 	max := 0
 	ans := 0
-	for mask := 1; mask < 1 << n; mask++ {
+	for mask := 1; mask < 1<<n; mask++ {
 		val := 0
 		for i, num := range nums {
-			if mask >> i & 1 == 1 {
+			if mask>>i&1 == 1 {
 				val |= num
 			}
 		}
@@ -991,7 +992,7 @@ type AllOne struct {
 }
 
 type AllOneNode struct {
-	keys *StringSet
+	keys  *StringSet
 	count int
 }
 
@@ -999,7 +1000,7 @@ func Constructor() AllOne {
 	return AllOne{list.New(), map[string]*list.Element{}}
 }
 
-func (this *AllOne) Inc(key string)  {
+func (this *AllOne) Inc(key string) {
 	node, ok := this.nodes[key]
 	if ok {
 		curNode := node.Value.(AllOneNode)
@@ -1025,7 +1026,7 @@ func (this *AllOne) Inc(key string)  {
 	}
 }
 
-func (this *AllOne) Dec(key string)  {
+func (this *AllOne) Dec(key string) {
 	cur := this.nodes[key]
 	curNode := cur.Value.(AllOneNode)
 	if curNode.count > 1 {
@@ -1144,7 +1145,7 @@ func findTarget(root *TreeNode, k int) bool {
 			return true
 		}
 
-		if vals[k - node.Val] {
+		if vals[k-node.Val] {
 			return true
 		}
 
@@ -1200,8 +1201,8 @@ func imageSmoother(img [][]int) [][]int {
 		ret[i] = make([]int, n)
 		for j := 0; j < n; j++ {
 			num, sum := 0, 0
-			for x := i - 1; x <= i + 1; x++ {
-				for y := j - 1; y <= j + 1; y++ {
+			for x := i - 1; x <= i+1; x++ {
+				for y := j - 1; y <= j+1; y++ {
 					if x >= 0 && x < m && y >= 0 && y < n {
 						num++
 						sum += img[x][y]
@@ -1220,7 +1221,7 @@ func trailingZeroes(n int) int {
 
 	ans := 0
 	for i := 5; i <= n; i += 5 {
-		for x := i; x % 5 == 0; x /= 5 {
+		for x := i; x%5 == 0; x /= 5 {
 			ans++
 		}
 	}
@@ -1233,17 +1234,17 @@ func maxConsecutiveAnswers(answerKey string, k int) int {
 
 	n := len(answerKey)
 
-	tCount := make([]int, n + 1)
-	fCount := make([]int, n + 1)
+	tCount := make([]int, n+1)
+	fCount := make([]int, n+1)
 
 	// 分别记录T和F的前缀和
 	for i, key := range answerKey {
 		if key == 'T' {
-			tCount[i + 1] = tCount[i] + 1
-			fCount[i + 1] = fCount[i]
+			tCount[i+1] = tCount[i] + 1
+			fCount[i+1] = fCount[i]
 		} else {
-			tCount[i + 1] = tCount[i]
-			fCount[i + 1] = fCount[i] + 1
+			tCount[i+1] = tCount[i]
+			fCount[i+1] = fCount[i] + 1
 		}
 	}
 
@@ -1252,22 +1253,22 @@ func maxConsecutiveAnswers(answerKey string, k int) int {
 		// 枚举左端点
 		for i := 0; i < n; i++ {
 			// 剩余可能最大值小于max, 可以提前结束循环
-			if n - i <= max {
+			if n-i <= max {
 				break
 			}
-			l, r := i, n - 1
+			l, r := i, n-1
 			// 二分查找右端点
 			for l < r {
-				mid := l + (r - l + 1) / 2
+				mid := l + (r-l+1)/2
 				// k = 区间长度 - T或F的个数
-				ctn := (mid - i + 1) - (count[mid + 1] - count[i])
+				ctn := (mid - i + 1) - (count[mid+1] - count[i])
 				if ctn > k {
 					r = mid - 1
 				} else {
 					l = mid
 				}
 			}
-			max = Max(max, r - i + 1)
+			max = Max(max, r-i+1)
 		}
 		return max
 	}
@@ -1343,7 +1344,7 @@ func countNumbersWithUniqueDigits(n int) int {
 	ans := f[0]
 	for i := 1; i < n; i++ {
 		f[i] = 9
-		for j := 9; j >= 9 - (i+1) + 2; j-- {
+		for j := 9; j >= 9-(i+1)+2; j-- {
 			f[i] *= j
 		}
 		ans += f[i]
@@ -1357,13 +1358,13 @@ func construct(grid [][]int) *QuadNode {
 
 	n := len(grid)
 
-	preSum := make([][]int, n + 1)
-	preSum[0] = make([]int, n + 1)
+	preSum := make([][]int, n+1)
+	preSum[0] = make([]int, n+1)
 
 	for i, row := range grid {
-		preSum[i + 1] = make([]int, n + 1)
+		preSum[i+1] = make([]int, n+1)
 		for j, v := range row {
-			preSum[i + 1][j + 1] = preSum[i][j + 1] + preSum[i + 1][j] - preSum[i][j] + v
+			preSum[i+1][j+1] = preSum[i][j+1] + preSum[i+1][j] - preSum[i][j] + v
 		}
 	}
 
@@ -1374,11 +1375,11 @@ func construct(grid [][]int) *QuadNode {
 		if sum == 0 {
 			return &QuadNode{Val: false, IsLeaf: true}
 		}
-		w, h := x2 - x1, y2 - y1
-		if sum == w * h {
+		w, h := x2-x1, y2-y1
+		if sum == w*h {
 			return &QuadNode{Val: true, IsLeaf: true}
 		}
-		midX, midY := (x1 + x2) / 2, (y1 + y2) / 2
+		midX, midY := (x1+x2)/2, (y1+y2)/2
 		return &QuadNode{
 			true, false,
 			divide(x1, y1, midX, midY),
@@ -1403,6 +1404,30 @@ func numSubarrayProductLessThanK(nums []int, k int) int {
 			product /= nums[j]
 		}
 		ans += i - j + 1
+	}
+
+	return ans
+}
+
+/* 1403. 非递增顺序的最小子序列 */
+func minSubsequence(nums []int) []int {
+
+	n := len(nums)
+
+	sort.Ints(nums)
+
+	sum := 0
+	for _, num := range nums {
+		sum += num
+	}
+
+	var ans []int
+	for i, s := n-1, 0; i >= 0; i-- {
+		ans = append(ans, nums[i])
+		s += nums[i]
+		if s > sum-s {
+			break
+		}
 	}
 
 	return ans
