@@ -1454,3 +1454,25 @@ func minSubsequence(nums []int) []int {
 
 	return ans
 }
+
+/* 面试题 01.02. 判定是否互为字符重排 */
+func CheckPermutation(s1 string, s2 string) bool {
+
+	words := make([]int, 128)
+
+	for _, s := range s1 {
+		words[s]++
+	}
+
+	for _, s := range s2 {
+		words[s]--
+	}
+
+	for _, word := range words {
+		if word != 0 {
+			return false
+		}
+	}
+
+	return true
+}

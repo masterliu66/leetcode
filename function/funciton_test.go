@@ -473,3 +473,10 @@ func TestMinSubsequence(t *testing.T) {
 	ans := minSubsequence(nums)
 	assertEqual(t, []int{10, 9}, ans)
 }
+
+func TestCheckPermutation(t *testing.T) {
+	s1 := "abc"
+	s2 := "bca"
+	ans := CheckPermutation(s1, s2)
+	assertEqual(t, true, ans)
+}
