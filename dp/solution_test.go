@@ -30,4 +30,10 @@ func TestLengthOfLIS2(t *testing.T) {
 	ans := lengthOfLIS2(nums, k)
 
 	function.AssertEqual(t, 5, ans)
+
+	nums, k = []int{7,4,5,1,8,12,4,7}, 5
+
+	ans = lengthOfLIS2(nums, k)
+
+	function.AssertEqual(t, 4, ans)
 }

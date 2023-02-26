@@ -61,8 +61,3 @@ func lengthOfLIS(nums []int) int {
 	return maxLen
 }
 
-
-/** 2407. 最长递增子序列 II */
-func lengthOfLIS2(nums []int, k int) int {
-	return 0
-}
