@@ -46,3 +46,23 @@ func TestLongestPalindrome(t *testing.T) {
 
 	function.AssertEqual(t, "baab", ans)
 }
+
+func TestLongestIdealString(t *testing.T) {
+
+	s := "pvjcci"
+	k := 4
+
+	ans := longestIdealString(s, k)
+
+	function.AssertEqual(t, 2, ans)
+}
+
+func TestLongestSubsequence(t *testing.T) {
+
+	arr := []int{1, 5, 7, 8, 5, 3, 4, 2, 1}
+	difference := -2
+
+	ans := longestSubsequence(arr, difference)
+
+	function.AssertEqual(t, 4, ans)
+}
