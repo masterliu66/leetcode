@@ -480,3 +480,9 @@ func TestCheckPermutation(t *testing.T) {
 	ans := CheckPermutation(s1, s2)
 	AssertEqual(t, true, ans)
 }
+
+func TestHalveArray(t *testing.T) {
+	nums := []int{5, 19, 8, 1}
+	ans := halveArray(nums)
+	AssertEqual(t, 3, ans)
+}

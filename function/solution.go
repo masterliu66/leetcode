@@ -1476,3 +1476,27 @@ func CheckPermutation(s1 string, s2 string) bool {
 
 	return true
 }
+
+/* 2208. 将数组和减半的最少操作次数 */
+func halveArray(nums []int) int {
+
+	sum, halfSum := 0.0, 0.0
+	priorityQueue := NewPriorityQueue(func() []any {
+		elements := make([]any, len(nums))
+		for i, num := range nums {
+			elements[i] = float64(num)
+			sum += float64(num)
+		}
+		return elements
+	}, func(x, y any) bool { return x.(float64) > y.(float64) })
+
+	cnt := 0
+	for halfSum < sum/2 {
+		max := priorityQueue.PopElement().(float64)
+		halfSum += max / 2
+		priorityQueue.PushElement(max / 2)
+		cnt++
+	}
+
+	return cnt
+}
