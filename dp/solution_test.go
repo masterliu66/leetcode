@@ -66,3 +66,10 @@ func TestLongestSubsequence(t *testing.T) {
 
 	function.AssertEqual(t, 4, ans)
 }
+
+func TestWaysToStep(t *testing.T) {
+
+	n := 1000000
+	ans := waysToStep(n)
+	function.AssertEqual(t, 746580045, ans)
+}
