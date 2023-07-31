@@ -66,3 +66,39 @@ func TestLongestSubsequence(t *testing.T) {
 
 	function.AssertEqual(t, 4, ans)
 }
+
+func TestGenerateParenthesis(t *testing.T) {
+
+	n := 3
+
+	ans := generateParenthesis(n)
+
+	function.AssertEqual(t, []string{"()()()", "()(())", "(())()", "(()())", "((()))"}, ans)
+}
+
+func TestMaxSubArray(t *testing.T) {
+
+	nums := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}
+
+	ans := maxSubArray(nums)
+
+	function.AssertEqual(t, 6, ans)
+}
+
+func TestCanJump(t *testing.T) {
+
+	nums := []int{2, 3, 1, 1, 4}
+
+	ans := canJump(nums)
+
+	function.AssertEqual(t, true, ans)
+}
+
+func TestRob(t *testing.T) {
+
+	nums := []int{2, 7, 9, 3, 1}
+
+	ans := rob(nums)
+
+	function.AssertEqual(t, 12, ans)
+}
