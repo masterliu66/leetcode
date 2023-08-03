@@ -109,3 +109,31 @@ func TestRob(t *testing.T) {
 
 	function.AssertEqual(t, 12, ans)
 }
+
+func TestMaxProfit(t *testing.T) {
+
+	prices := []int{7, 1, 5, 3, 6, 4}
+
+	ans := maxProfit(prices)
+
+	function.AssertEqual(t, 7, ans)
+}
+
+func TestCoinChange(t *testing.T) {
+
+	coins, amount := []int{1, 2, 5}, 11
+
+	ans := coinChange(coins, amount)
+
+	function.AssertEqual(t, 3, ans)
+
+}
+
+func TestJump(t *testing.T) {
+
+	nums := []int{5, 4, 2, 2, 1, 1, 2, 3, 4, 5}
+
+	ans := jump(nums)
+
+	function.AssertEqual(t, 4, ans)
+}
