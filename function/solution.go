@@ -592,50 +592,50 @@ func subArrayRanges(nums []int) int64 {
 	f := make([]Tuple, n)
 	var minStack, maxStack Stack
 	for i, num := range nums {
-		for !minStack.isEmpty() && nums[minStack.peek()] > num {
-			minStack.pop()
+		for !minStack.IsEmpty() && nums[minStack.Peek()] > num {
+			minStack.Pop()
 		}
-		if minStack.isEmpty() {
+		if minStack.IsEmpty() {
 			f[i].minLeft = -1
 		} else {
-			f[i].minLeft = minStack.peek()
+			f[i].minLeft = minStack.Peek()
 		}
-		minStack.push(i)
-		// nums[maxStack.peek()] == nums[i]时maxStack.peek() < i
-		for !maxStack.isEmpty() && nums[maxStack.peek()] <= num {
-			maxStack.pop()
+		minStack.Push(i)
+		// nums[maxStack.Peek()] == nums[i]时maxStack.Peek() < i
+		for !maxStack.IsEmpty() && nums[maxStack.Peek()] <= num {
+			maxStack.Pop()
 		}
-		if maxStack.isEmpty() {
+		if maxStack.IsEmpty() {
 			f[i].maxLeft = -1
 		} else {
-			f[i].maxLeft = maxStack.peek()
+			f[i].maxLeft = maxStack.Peek()
 		}
-		maxStack.push(i)
+		maxStack.Push(i)
 	}
 
-	minStack.clear()
-	maxStack.clear()
+	minStack.Clear()
+	maxStack.Clear()
 	for i := n - 1; i >= 0; i-- {
 		num := nums[i]
-		// nums[minStack.peek()] == nums[i]时minStack.peek() > i
-		for !minStack.isEmpty() && nums[minStack.peek()] >= num {
-			minStack.pop()
+		// nums[minStack.Peek()] == nums[i]时minStack.Peek() > i
+		for !minStack.IsEmpty() && nums[minStack.Peek()] >= num {
+			minStack.Pop()
 		}
-		if minStack.isEmpty() {
+		if minStack.IsEmpty() {
 			f[i].minRight = n
 		} else {
-			f[i].minRight = minStack.peek()
+			f[i].minRight = minStack.Peek()
 		}
-		minStack.push(i)
-		for !maxStack.isEmpty() && nums[maxStack.peek()] < num {
-			maxStack.pop()
+		minStack.Push(i)
+		for !maxStack.IsEmpty() && nums[maxStack.Peek()] < num {
+			maxStack.Pop()
 		}
-		if maxStack.isEmpty() {
+		if maxStack.IsEmpty() {
 			f[i].maxRight = n
 		} else {
-			f[i].maxRight = maxStack.peek()
+			f[i].maxRight = maxStack.Peek()
 		}
-		maxStack.push(i)
+		maxStack.Push(i)
 	}
 
 	var sumMax, sumMin int64

@@ -137,3 +137,30 @@ func TestJump(t *testing.T) {
 
 	function.AssertEqual(t, 4, ans)
 }
+
+func TestTrap(t *testing.T) {
+
+	height := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
+
+	ans := trap(height)
+
+	function.AssertEqual(t, 6, ans)
+}
+
+func TestUniquePaths(t *testing.T) {
+
+	m, n := 3, 7
+
+	ans := uniquePaths(m, n)
+
+	function.AssertEqual(t, 28, ans)
+}
+
+func TestUniquePathsWithObstacles(t *testing.T) {
+
+	obstacleGrid := [][]int{{0, 0}, {1, 1}, {0, 0}}
+
+	ans := uniquePathsWithObstacles(obstacleGrid)
+
+	function.AssertEqual(t, 0, ans)
+}
