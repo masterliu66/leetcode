@@ -14,6 +14,10 @@ func Min(a, b int) int {
 	return b
 }
 
+func Min3(a, b, c int) int {
+	return Min(Min(a, b), c)
+}
+
 func Abs(x int) int {
 	if x < 0 {
 		return -x

@@ -164,3 +164,27 @@ func TestUniquePathsWithObstacles(t *testing.T) {
 
 	function.AssertEqual(t, 0, ans)
 }
+
+func TestMinPathSum(t *testing.T) {
+
+	grid := [][]int{{1, 3, 1}, {1, 5, 1}, {4, 2, 1}}
+
+	ans := minPathSum(grid)
+
+	function.AssertEqual(t, 7, ans)
+}
+
+func TestMinDistance(t *testing.T) {
+
+	word1, word2 := "horse", "ros"
+
+	ans := minDistance(word1, word2)
+
+	function.AssertEqual(t, 3, ans)
+
+	word1, word2 = "intention", "execution"
+
+	ans = minDistance(word1, word2)
+
+	function.AssertEqual(t, 5, ans)
+}
