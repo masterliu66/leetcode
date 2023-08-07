@@ -486,3 +486,38 @@ func TestHalveArray(t *testing.T) {
 	ans := halveArray(nums)
 	AssertEqual(t, 3, ans)
 }
+
+func TestFindRepeatNumber(t *testing.T) {
+
+	nums := []int{2, 3, 1, 0, 2, 5, 3}
+	ans := findRepeatNumber(nums)
+	AssertEqual(t, 2, ans)
+}
+
+func TestFindNumberIn2DArray(t *testing.T) {
+
+	matrix := [][]int{
+		{1, 4, 7, 11, 15},
+		{2, 5, 8, 12, 19},
+		{3, 6, 9, 16, 22},
+		{10, 13, 14, 17, 24},
+		{18, 21, 23, 26, 30}}
+	AssertEqual(t, true, findNumberIn2DArray(matrix, 5))
+	AssertEqual(t, false, findNumberIn2DArray(matrix, 20))
+
+	matrix = [][]int{
+		{1, 4},
+		{2, 5}}
+	AssertEqual(t, true, findNumberIn2DArray(matrix, 2))
+}
+
+func TestReversePrint(t *testing.T) {
+
+	head := &ListNode{1, nil}
+	head.Next = &ListNode{3, nil}
+	head.Next.Next = &ListNode{2, nil}
+
+	ans := reversePrint(head)
+
+	AssertEqual(t, []int{2,3,1}, ans)
+}

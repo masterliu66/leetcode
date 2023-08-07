@@ -1500,3 +1500,66 @@ func halveArray(nums []int) int {
 
 	return cnt
 }
+
+/* 剑指 Offer 03. 数组中重复的数字 */
+func findRepeatNumber(nums []int) int {
+
+	set := map[int]struct{}{}
+
+	for _, num := range nums {
+		_, exist := set[num]
+		if exist {
+			return num
+		}
+		set[num] = struct{}{}
+	}
+
+	return -1
+}
+
+/* 剑指 Offer 04. 二维数组中的查找 */
+func findNumberIn2DArray(matrix [][]int, target int) bool {
+
+	if len(matrix) == 0 || len(matrix[0]) == 0 {
+		return false
+	}
+	m, n := len(matrix), len(matrix[0])
+	x, y := 0, n-1
+	for x < m && y >= 0 {
+		val := matrix[x][y]
+		if val == target {
+			return true
+		} else if val < target {
+			x++
+		} else {
+			y--
+		}
+	}
+
+	return false
+}
+
+/* 剑指 Offer 06. 从尾到头打印链表 */
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+func reversePrint(head *ListNode) []int {
+
+	if head == nil {
+		return nil
+	}
+
+	var ans []int
+	var dfs func(node *ListNode)
+	dfs = func(node *ListNode) {
+		if node.Next != nil {
+			dfs(node.Next)
+		}
+		ans = append(ans, node.Val)
+	}
+
+	dfs(head)
+
+	return ans
+}
